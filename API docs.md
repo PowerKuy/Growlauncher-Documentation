@@ -2,7 +2,7 @@
 
 Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
 
-unfinished: [addIntoModule](#addintomodule), [NewDrawList](#newdrawlist), [warn](#warn)
+unfinished: [addIntoModule](#addintomodule), [getValue](#getvalue), [editValue](editvalue) [NewDrawList](#newdrawlist), [warn](#warn)
 
 # Structs
 
@@ -348,7 +348,7 @@ Edit a toggle value, no return.
 
 Example:
 ```lua
-editToggle("ModFly", true) --turn the modfly on
+editToggle("ModFly", true)
 ```
 
 
@@ -420,7 +420,7 @@ Returns [NetAvatar player](#netavatar).
 
 Example:
 ```lua
-LogToConsole("I'm currently in (`2"..(GetLocal().posX//32).."`o,`2"..(GetLocal().posX//32).."`o)")
+LogToConsole("I'm currently in `2"..(GetLocal().posX//32).."`o,`2"..(GetLocal().posX//32).."`o")
 ```
 
 
@@ -672,20 +672,11 @@ editValue(string name, value)
 ```
 
 ## growlauncher
-| index                       | return         | description 
-| :-                          | :-             | :-          
-| getVersion()                | string version | returns version string.
-| isOnPos(int posx, int posy) | int version    | returns version integer.
-| version                     | int version    | returns version integer.
-
-Example:
-```lua
-growlauncher = {
-    getVersion(), --no param, return string version
-    getVersionInt(string version), --return int version
-    version --return int ; version == getVersionInt(getVersion())
-}
-```
+| index                       | return         | description              | Example
+| :-                          | :-             | :-                       | :-
+| getVersion()                | string version | returns version string.  | `growlauncher.getVersion()`
+| isOnPos(int posx, int posy) | int version    | returns version integer. | `growlauncher.getVersionInt(growlauncher.getVersion())`
+| version                     | int version    | returns version integer. | `growlauncher.version`
 
 
 ## setMinimum
@@ -732,7 +723,7 @@ ImVec4(0, 0.55f, 0.56f, 1)
 
 
 ## NewDrawList
-`NewDrawList()`
+`NewDrawList()` no param
 
 Returns struct.
 ```lua
@@ -756,7 +747,7 @@ warn(text)
 
 Example:
 ```lua
-tile.setFg(tile.getTile(x,y), int itemid)
+tile.setFg(tile.getTile(GetLocal().posX//32,GetLocal().posY//32), 6)
 ```
 
 
