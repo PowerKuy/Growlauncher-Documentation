@@ -377,7 +377,7 @@ LogToConsole("I'm in world ".GetWorldName())
 | `setWeather(int weatherid)`                   | -      | Sets visual weather (0 < weatherid < 74).                 | `growtopia.setWeather(5)`
 | `isOnPos(int posx, int posy)`                 | bool   | Checks char position is on certain tile using coordinate. | `LogToConsole(growtopia.isOnPos(0, 0))`
 | `notify(string message)`                      | -      | Notify a message like OnTextOverlay.                      | `growtopia.notify("Notif here")`
-| `sendDialog(string dialog)`                   | -      | Sends dialog "OnDialogRequest" using var.v2.              | `growtopia.sendDialog("add_textbox|Sample dialog|left|\nend_dialog|continue||ok")`
+| `sendDialog(string dialog)`                   | -      | Sends dialog "OnDialogRequest" using var.v2.              | `growtopia.sendDialog("add_textbox\|Dialogs\|left\|\nend_dialog\|continue\|\|ok")`
 | `getItemID(string item_name)`                 | int    | Returns item id using item name.                          | `LogToConsole(growtopia.getItemID("Dirt"))`
 | `checkInventory(int item_id)`                 | bool   | Checks if we item is available using item id.             | `LogToConsole(growtopia.checkInventory(2))`
 | `getItemName(int item_id)`                    | string | Returns item name using item id.                          | `LogToConsole(growtopia.getItemName(2))`
