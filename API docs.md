@@ -1,15 +1,77 @@
-# Growlauncher
-
-API
+# Growlauncher API
 Growlauncher supports lua programming language that allows you to run scripts in Growtopia.
 
 # Struct
+* [PacketRaw](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#packetraw)
+* [VariantList](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#variantlist)
+* [Tankpacket](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#tankpacket-struct)
+
+* [NetAvatar](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#netavatar)
+* [WorldObject](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#worldobject)
+* [Inventory](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#inventory)
+* [Tile](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#tile)
+* [ClientNPC](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#clientnpc)
+* [TileExtra](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#tileextra)
+* [Data](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#data)
+
+* [Vec2](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#vec2)
+* [Vec3](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#vec3)
+* [Vec4](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#vec4)
+
+
+# Functions
+* [SendPacket](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#sendpacket-or-sendpacket)
+* [SendPacketRaw](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#sendpacketraw-or-sendpacketraw)
+* [SendVariant](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#sendvariant-or-sendvariant)
+
+* [GetLocal](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getlocal-or-getlocal)
+* [GetInventory](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getinventory-or-getinventory)
+* [GetTile](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#gettile-or-gettile)
+* [GetTiles](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#gettiles-or-gettiles)
+* [GetObjectList](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getobjectlist-or-getobjectlist)
+* [GetNPCList](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getnpclist-or-getnpclist)
+* [GetPlayerList](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getplayerlist-or-getplayerlist)
+* [getPlayerByNetID](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getplayerbynetid)
+
+* [Sleep](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#sleep)
+* [LogToConsole](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#logtoconsole)
+* [sendNotification](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#sendnotification)
+* [FindPath](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#findpath)
+* [EditToggle](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#edittoggle)
+* [FindItemID](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#finditemid)
+* [GetWorldName](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getworldname-or-getcurrentworldname)
+* [growtopia](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#growtopia)
+
+* [sendDialog](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#senddialog)
+* [AddIntoModule](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#addintomodule)
+
+* [CSleep](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#csleep)
+* [AddHook](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#addhook)
+* [applyHook](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#applyhook)
+* [removeHook](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#removehook-or-removehook)
+* [runThread](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#runthread)
+* [runCoroutine](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#runcoroutine)
+* [getValue](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getvalue)
+* [editValue](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#editvalue)
+
+* [growlauncher](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#growlauncher)
+* [setMinimum](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#setminimum)
+* [GetTime](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#gettime)
+
+* [ImVec2](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#imvec2)
+* [ImVec4](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#imvec4)
+* [NewDrawList](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#setminimum)
+* [warn](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#warn)
+* [tile](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#tile-1)
+
+# Deprecated function
+* [GetGems](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#getgems)
+* [SetPathFlag](https://github.com/IniEyyy/Growlauncher/blob/main/API%20docs.md#setpathflag)
 
 ## NetAvatar
-NetAvatar is same as Player
+NetAvatar struct (char)
 ```lua
---NetAvatar Struct
-local NetAvatar= {
+local NetAvatar = {
     posX,
     posY,
     netID,
@@ -25,29 +87,73 @@ local NetAvatar= {
     sizeY,
     sizeXenc,
     sizeYenc,
-    waterSpeed
+    waterSpeed,
+    status,
+    irisColor --[[= {
+        a,
+        r,
+        g,
+        b
+    }]],
+    pupilColor --[[= {
+        a,
+        r,
+        g,
+        b
+    }]],
+    equip = {
+        hair,
+        shirt,
+        pants,
+        feet,
+        hand,
+        back,
+        face,
+        mask,
+        necklace
+    },
+    effect = {
+        hair,
+        shirt,
+        pants,
+        feet,
+        hand,
+        back,
+        face,
+        mask,
+        necklace
+    }
 }
 ```
-
 ## VariantList
-VariantList to manage data from Variant Data
+VariantList struct (to manage data from Variant Data)
 ```lua
---Struct Variant
-local Variant= {
-    v0 (int, string ,bool, vec2, vec3)
+local Variant = {
     v1 (int, string ,bool, vec2, vec3)
     v2 (int, string ,bool, vec2, vec3)
     v3 (int, string ,bool, vec2, vec3)
     v4 (int, string ,bool, vec2, vec3)
     v5 (int, string ,bool, vec2, vec3)
+    v6 (int, string ,bool, vec2, vec3)
 }
 ```
-
-## WorldObject
-WorldObject Struct
+## tankpacket struct
+TankPacket struct
 ```lua
---Struct WorldObject
-local WorldObject= {
+local TankPacket = {
+    secnetid,
+    padding1,
+    padding2,
+    padding3,
+    padding4,
+    padding5,
+    time
+}
+```
+## WorldObject
+WorldObject struct 
+```lua
+local WorldObject = {
     posX,
     posY,
     itemid,
@@ -56,22 +162,18 @@ local WorldObject= {
     amount
 }
 ```
-
 ## Inventory
 Inventory struct
 ```lua
---Struct Inventory
-local Inventory= {
+local Inventory = {
     id,
     amount
 }
 ```
-
 ## Tile
-Tile Struct
+Tile struct
 ```lua
---Struct Tile
-local Tile= {
+local Tile = {
     int x,
     int y,
     int fg,
@@ -81,11 +183,9 @@ local Tile= {
     TileExtra extra
 }
 ```
-
 ## PacketRaw
-PacketRaw Struct
+PacketRaw struct
 ```lua
---Struct PacketRaw
 local PacketRaw = {
     type,
     value,
@@ -99,268 +199,294 @@ local PacketRaw = {
     yspeed
 }
 ```
-
 ## ClientNPC
 ClientNPC struct
 ```lua
---Struct ClientNPC
-local ClientNPC= {
+local ClientNPC = {
     Vec2 pos,
     Vec2 targetpos,
     int id,
     int type
 }
 ```
-
 ## TileExtra
-Tile Extra Struct
+TileExtra struct
 ```lua
---Struct TileExtra
-local TileExtra= {
-    string label
-    int owner
-    int flag
+local TileExtra = {
+    string label,
+    int owner,
+    int flag,
     int type
 }
 ```
-
-## Vec2
-Vector2 Struct
+## Data
+Data struct
 ```lua
---Struct Vec2
-local Vec2= {
-    float x,
-    float y
+local Data = {
+    string title,
+    string message,
+    string confirm,
+    string url,
+    string alias
 }
 ```
-
-## Vec3
-Vector3 Struct
+## Vec2
+Vector2 struct
 ```lua
---Struct Vec3
-local Vec3= {
+local Vec2 = {
+    float x, --width
+    float y  --height
+}
+```
+## Vec3
+Vector3 struct
+```lua
+local Vec3 = {
     float x,
     float y,
     float z
 }
 ```
-
-
-# Functions
-
-
-## GetWorldName or getCurrentWorldName
+## Vec4
+Vector4 struct
 ```lua
-GetWorldName(--[[no param]]) -- 'function: 0x63ece74'
-return worldname: string
+local Vec4 = {
+    float x, --r
+    float y, --g
+    float z, --b
+    float w  --a
+}
 ```
+
+
 ## sendPacket or SendPacket
 ```lua
-sendPacket(type: number, packet: string, to_client_first) -- 'function: 0x63ecba4'
+sendPacket(int type, string packet, bool to_client_first)
 --no return
 ```
-```lua
 ## sendPacketRaw or SendPacketRaw
 ```lua
-sendPacketRaw(flag: bool,packet: struct PacketRaw) -- 'function: 0x63ed010'
---flag = to client
+sendPacketRaw(bool to_client_first, struct PacketRaw packet)
 --no return
 ```
 ## sendVariant or SendVariant
 ```lua
-sendVariant(struct VariantList) -- 'function: 0x63ed85c'
-return isblocked: number
+sendVariant(struct VariantList variantlist)
+-- 1 - 3 param (struct VariantList variantlist, varlist, packet) (struct VariantList variantlist, use_net_id, value)
+--no return
 ```
-
-
 ## getLocal or GetLocal
 ```lua
-getLocal(--[[no param]]) -- 'function: 0x63ef830'
-return player: struct NetAvatar
+getLocal()
+--no param
+return struct NetAvatar player
 ```
 ## getInventory or GetInventory
 ```lua
-getInventory(--[[no param]]) -- 'function: 0x63f0344'
-return inventorylist: struct Inventory
+getInventory()
+--no param
+return struct Inventory inventorylist
 ```
 ## getTile or GetTile
 ```lua
-getTile({tilex: number, tiley: number}) -- 'function: 0x63ef0a8'
-return tile: struct Tile
+getTile(int tilex, int tiley)
+return struct Tile tile
 ```
 ## getTiles or GetTiles
 ```lua
-GetTiles(--[[no param]]) -- 'function: 0x63ef0a8'
-return tiles: struct Tile
+GetTiles()
+--no param
+return struct Tile tiles
 ```
 ## getObjectList or GetObjectList
 ```lua
-getObjectList(--[[no param]]) -- 'function: 0x63f074c'
-return object: struct WorldObject
+getObjectList()
+--no param
+return struct WorldObject object
 ```
 ## getNPCList or GetNPCList
 ```lua
-getNPCList(--[[no param]]) -- 'function: 0x63f0a5c'
+getNPCList()
+--no param
 return struct ClientNPC
 ```
 ## getPlayerList or GetPlayerList
 ```lua
-getPlayerList(--[[no param]]) -- 'function: 0x63effdc'
-return playerlist: struct NetAvatar
+getPlayerList()
+--no param
+return struct NetAvatar playerlist
 ```
 ## getPlayerByNetID
 ```lua
-getPlayerByNetID(number) -- 'function: 0x63f0120'
+getPlayerByNetID(int)
 return struct NetAvatar
 ```
 
 
 ## sleep or Sleep
 ```lua
-Sleep(number) -- 'function: 0x63ecdbc'
---no return
-```
-## CSleep
-```lua
-CSleep(number) -- 'function: 0x63f21fc'
+Sleep(int time)
 --no return
 ```
 ## LogToConsole
 ```lua
-LogToConsole(text: string) -- 'function: 0x63eb6f0'
-return text: string
+LogToConsole(string text) 
+return string text
+```
+## sendNotification
+```lua
+sendNotification(string text) 
+--no return
 ```
 ## findPath or FindPath
 ```lua
-findPath(x: number,y: number, check_only: bool) -- 'function: 0x63eedf4'
-return isblocked: boolean
+findPath(int x, int y, bool check_only)
+return bool isblocked
 ```
 ## editToggle or EditToggle
 ```lua
-editToggle(name: string, value: bool) -- 'function: 0x63f14fc'
+editToggle(string name, bool value) 
 --no return
 ```
 ## findItemID or FindItemID
 ```lua
-findItemID(string) -- 'function: 0x63efe40'
-return itemid: number
+findItemID(string) 
+return int itemid
 ```
-## sendNotification
+## GetWorldName or getCurrentWorldName
 ```lua
-sendNotification(text: string) -- 'function: 0x63ec894'
+GetWorldName()
+--no param
+return string worldname
+```
+## growtopia
+```lua
+growtopia = {
+    setWeather(int weatherid), --no return
+    isOnPos(int posx, int posy), --return bool
+    notify(string message),
+    sendDialog(string dialog),
+    getItemID(string item_name), --return int
+    checkInventory(int item_id), --return bool
+    getItemName(int item_id), --return string
+    checkInventoryCount(int itemid), --return int
+    tileChange(int posx, int posy, int item_id), --return bool
+    warpTo(string nameworld), --no return
+    enter(int x, int y) --no return
+}
+```
+
+## sendDialog
+```lua
+sendDialog(--[[struct data]] dialog)
+--no return
+```
+## addIntoModule
+```lua
+addIntoModule(string json)
+--no return
+```
+
+## CSleep
+```lua
+CSleep(int time)
 --no return
 ```
 ## addHook or AddHook
 ```lua
-addHook(function: function,hookname: string) -- 'function: 0x63ebaac'
+addHook(function func, string event_name, bool no_return)
+--event_name = {"OnSendPacket(type,pkt)","OnSendPacketRaw(pkt)","OnVariant(var)","OnGamePacket(pkt)","onDraw(deltaTime)}
 --no return
 ```
 ## applyHook
 ```lua
-applyHook(--[[no param]]) -- 'function: 0x63ec56c'
+applyHook()
+--no param or bool no_return 
+--no return
+```
+## removeHook or RemoveHook
+```lua
+removeHook(event_name)
 --no return
 ```
 ## runThread
 ```lua
-runThread(function: string, args: any) -- 'function: 0x63f1e30'
+runThread(func, args)
+--no return
 ```
 ## runCoroutine
 ```lua
-runCoroutine(function: string, args: any) -- 'function: 0x63f2024'
+runCoroutine(int function, args)
+--no return
 ```
-## growtopia
+## getValue
 ```lua
-growtopia = -- table: 0xbf37f8e0
-{
-    setWeather(number), -- 'function: 0xbf37fa80',
-    isOnPos(x: number, y: number), -- 'function: 0xbf37f940',
-    notify(string), -- 'function: 0xbf37f9e0',
-    sendDialog(string), -- 'function: 0xbf37f9c0',
-    getItemID(string), -- 'function: 0xbf37fb00',
-    checkInventory(number), -- 'function: 0xbf37f960',
-    getItemName(number), -- 'function: 0xbf37fa20',
-    checkInventoryCount(number), -- 'function: 0xbf37fa60',
-    tileChange(x: number, y: number, id: number), -- 'function: 0xbf37f900',
-    warpTo(string), -- 'function: 0xbf37fac0',
-}
+getValue(int type, string name_value)
+return bool
 ```
+## editValue
+```lua
+editValue(string name, value)
+--no return
+```
+
 ## growlauncher
 ```lua
-growlauncher = -- table: 0xbf37f800
-{
-    getVersion(), -- 'function: 0xbf37f820',
-    version(), -- '6020',
-    getVersionInt(), -- 'function: 0xbf37f880',
+growlauncher = {
+    getVersion(), --no param, return string
+    getVersionInt(string version), --return int version
+    version --return int ; version == getVersionInt(getVersion())
 }
 ```
 ## setMinimum
 ```lua
-setMinimum(version) -- 'function: 0x63f1938'
-```
-## addIntoModule
-```lua
-addIntoModule(json: string) -- 'function: 0x63eb954'
-```
-## sendDialog
-```lua
-sendDialog(dialog: string--[[var.v2]]) -- 'function: 0x63ed3f8'
-```
-## GetGems (deprecated)
-```lua
-GetGems(--[[no param]]) -- 'function: 0x63ef050'
-return gems_amount: number
+setMinimum(string version)
+--no return
 ```
 ## getTime
 ```lua
-getTime(--[[no param]]) -- 'function: 0x63ecb04'
-return number
+getTime()
+--no param
+return int
 ```
-
 
 ## ImVec2
 ```lua
-ImVec2() -- 'function: 0xbefa4570'
-return struct Vec2
+ImVec2(--[[struct Vector2]])
 ```
 ## ImVec4
 ```lua
-ImVec4() -- 'function: 0xbefa45a0'
-return struct Vec4
+ImVec4(--[[struct Vector4]])
 ```
-
-
 ## NewDrawList
 ```lua
-NewDrawList() -- 'function: 0xbd4fc6a0'
+NewDrawList()
 return struct
-```
-## getValue
-```lua
-getValue(type: number,name_value: string) -- 'function: 0x63ec364'
 ```
 ## warn
 ```lua
-warn(string) -- 'function: 0x64f41a8'
-```
-## SetPathFlag (deprecated)
-```lua
-SetPathFlag(flag: integer) -- 'function: 0x63ef050'
---no return
-```
-## editValue
-```lua
-editValue(name: string, value) -- 'function: 0x63f14fc'
+warn(string)
 ```
 ## Tile
 ```lua
-tile = -- table: 0xbf37fb60
-{
-    setFg(?,number), -- 'function: 0xbf37fbc0',
-    setBg(?,number), -- 'function: 0xbf37fba0',
-    getTile(number,number), -- 'function: 0xbf37fb80',
+tile = {
+    setFg(?,number),
+    setBg(?,number),
+    getTile(number,number)
 }
 ```
-## dir
+
+
+## GetGems
+(deprecated)
 ```lua
-dir -- 'file (0xb911af08)'
+GetGems()
+--no param
+return int gems_amount
+```
+## SetPathFlag
+(deprecated)
+```lua
+SetPathFlag(int flag)
+--no return
 ```
