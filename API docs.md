@@ -2,6 +2,7 @@
 
 Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
 
+unfinished: [addIntoModule](#addintomodule), [NewDrawList](#newdrawlist), [warn](#warn)
 
 # Structs
 
@@ -36,10 +37,6 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 * [sendDialog](#senddialog)
 * [AddIntoModule](#addintomodule)
 
-* [SendPacket](#sendpacket-or-sendpacket)
-* [SendPacketRaw](#sendpacketraw-or-sendpacketraw)
-* [SendVariant](#sendvariant-or-sendvariant)
-
 * [GetLocal](#getlocal-or-getlocal)
 * [GetInventory](#getinventory-or-getinventory)
 * [GetTile](#gettile-or-gettile)
@@ -48,6 +45,10 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 * [GetNPCList](#getnpclist-or-getnpclist)
 * [GetPlayerList](#getplayerlist-or-getplayerlist)
 * [getPlayerByNetID](#getplayerbynetid)
+
+* [SendPacket](#sendpacket-or-sendpacket)
+* [SendPacketRaw](#sendpacketraw-or-sendpacketraw)
+* [SendVariant](#sendvariant-or-sendvariant)
 
 * [AddHook](#addhook)
 * [applyHook](#applyhook)
@@ -139,13 +140,13 @@ local Variant = {
 TankPacket struct
 ```lua
 local TankPacket = {
-    secnetid,
-    padding1,
-    padding2,
-    padding3,
-    padding4,
-    padding5,
-    time
+    int secnetid,
+    int padding1,
+    int padding2,
+    int padding3,
+    int padding4,
+    int padding5,
+    int time
 }
 ```
 
@@ -153,12 +154,12 @@ local TankPacket = {
 WorldObject struct 
 ```lua
 local WorldObject = {
-    posX,
-    posY,
-    itemid,
-    id,
-    invbit,
-    amount
+    int posX,
+    int posY,
+    int itemid,
+    int id,
+    int invbit,
+    int amount
 }
 ```
 
@@ -166,8 +167,8 @@ local WorldObject = {
 Inventory struct
 ```lua
 local Inventory = {
-    id,
-    amount
+    int id,
+    int amount
 }
 ```
 
@@ -207,16 +208,16 @@ local extra = {
 PacketRaw struct
 ```lua
 local PacketRaw = {
-    type,
-    value,
-    x,
-    y,
-    px,
-    py,
-    state,
-    netid,
-    xspeed,
-    yspeed
+    int type,
+    int value,
+    int x,
+    int y,
+    int px,
+    int py,
+    int state,
+    int netid,
+    int xspeed,
+    int yspeed
 }
 ```
 
@@ -258,8 +259,8 @@ local Data = {
 Vector2 struct
 ```lua
 local Vec2 = {
-    float x, --width
-    float y  --height
+    double x, -- x/ width
+    double y  -- y/ height
 }
 ```
 
@@ -290,8 +291,6 @@ local Vec4 = {
 
 
 
-
-
 ## sleep or Sleep
 `sleep(int time)`
 
@@ -308,7 +307,7 @@ LogToConsole("Second")
 ## LogToConsole
 `LogToConsole(string text)`
 
-Sends text into the console, return string text.
+Sends text into the console, returns string text.
 
 Example:
 ```lua
@@ -367,24 +366,24 @@ Returns string worldname where you are in.
 
 Example:
 ```lua
-LogToConsole("I'm in world ".GetWorldName())
+LogToConsole("I'm in world "..GetWorldName())
 ```
 
 
 ## growtopia
-| index function(args)                          | return | description                                               | Example
-| :-                                            | :-     | :-                                                        | :-
-| `setWeather(int weatherid)`                   | -      | Sets visual weather (0 < weatherid < 74).                 | `growtopia.setWeather(5)`
-| `isOnPos(int posx, int posy)`                 | bool   | Checks char position is on certain tile using coordinate. | `LogToConsole(growtopia.isOnPos(0, 0))`
-| `notify(string message)`                      | -      | Notify a message like OnTextOverlay.                      | `growtopia.notify("Notif here")`
-| `sendDialog(string dialog)`                   | -      | Sends dialog "OnDialogRequest" using var.v2.              | `growtopia.sendDialog("add_textbox\|Dialogs\|left\|\nend_dialog\|continue\|\|ok")`
-| `getItemID(string item_name)`                 | int    | Returns item id using item name.                          | `LogToConsole(growtopia.getItemID("Dirt"))`
-| `checkInventory(int item_id)`                 | bool   | Checks if we item is available using item id.             | `LogToConsole(growtopia.checkInventory(2))`
-| `getItemName(int item_id)`                    | string | Returns item name using item id.                          | `LogToConsole(growtopia.getItemName(2))`
-| `checkInventoryCount(int item_id)`            | int    | Returns item count in inventory using item id.            | `LogToConsole(growtopia.checkInventoryCount(2))`
-| `tileChange(int posx, int posy, int item_id)` | bool   | Sends packetraw using pos and id.                         | `growtopia.tileChange(GetLocal().posX//32, GetLocal().posY//32, 18)`
-| `warpTo(string nameworld)`                    | -      | Join a certain world.                                     | `growtopia.warpTo("WORLD")`
-| `enter(int x, int y)` 0 or 2 param            | -      | Enter a door/ portal near char using coordinate.          | `growtopia.enter()`
+| index function(args)                          | return | description                          | Example
+| :-                                            | :-     | :-                                   | :-
+| `setWeather(int weatherid)`                   | -      | Sets visual weather (0 until 74).    | `growtopia.setWeather(5)`
+| `isOnPos(int posx, int posy)`                 | bool   | Checks if char is on coordinate.     | `LogToConsole(growtopia.isOnPos(0, 0))`
+| `notify(string message)`                      | -      | Notify a message like OnTextOverlay. | `growtopia.notify("Notif here")`
+| `sendDialog(string dialog)`                   | -      | Sends growtopia dialog using var.v2. | `growtopia.sendDialog("add_textbox\|Ey\|left\|\nend_dialog\|\|\|ok")`
+| `getItemID(string item_name)`                 | int    | Returns item id using item name.     | `LogToConsole(growtopia.getItemID("Dirt"))`
+| `checkInventory(int item_id)`                 | bool   | Checks if you have an item using id. | `LogToConsole(growtopia.checkInventory(2))`
+| `getItemName(int item_id)`                    | string | Returns item name using item id.     | `LogToConsole(growtopia.getItemName(2))`
+| `checkInventoryCount(int item_id)`            | int    | Returns item amount using item id.   | `LogToConsole(growtopia.checkInventoryCount(2))`
+| `tileChange(int posx, int posy, int item_id)` | bool   | Sends packetraw using pos and id.    | `growtopia.tileChange(50, 23, 18)`
+| `warpTo(string nameworld)`                    | -      | Join a certain world.                | `growtopia.warpTo("WORLD")`
+| `enter(int x, int y)` 0 or 2 param            | -      | Enter a door using coordinate.       | `growtopia.enter()`
 
 
 
@@ -395,7 +394,7 @@ Sends [Data dialog](#data) to the server, no return.
 
 Example:
 ```lua
-sendDialog(dialog)
+sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://cdn.discordapp.com/attachments/887373003820789820/1218932537062064288/261262976_436671485194162_5765880893693920153_n-removebg-preview.png?ex=661beb63&is=66097663&hm=2a494d7b1b9a52cc66de99cd47bfddcbb0676023363790a668aaaacab3a22f04&", alias = "Eys"})
 ```
 
 
@@ -406,44 +405,7 @@ Add a custom module to growlauncher by using json, no return.
 
 Example:
 ```lua
-addIntoModule(string json)
---no return
-```
-
-
-## sendPacket or SendPacket
-`sendPacket(int type, string packet, bool to_client_first)` 2 - 3 param
-
-Sends type and packet to server or to client first.
-
-Example:
-```lua
-sendPacket(int type, string packet, bool to_client_first)
---no return
-```
-
-
-## sendPacketRaw or SendPacketRaw
-`sendPacketRaw(bool to_client_first, struct PacketRaw packet)` 1 - 2 param
-
-Sends [packet](#netavatar-or-netavatar) to server or to client first.
-
-Example:
-```lua
-sendPacketRaw(bool to_client_first, struct PacketRaw packet)
---no return
-```
-
-
-## sendVariant or SendVariant
-`sendVariant(VariantList variantlist, varlist, packet)` or `(VariantList variantlist, use_net_id, value)` 1 - 3 param, no return.
-
-Sends [variantlist](#variantlist) to server.
-
-Example:
-```lua
-sendVariant(struct VariantList variantlist)
---no return
+addIntoModule(json)
 ```
 
 
@@ -454,7 +416,6 @@ Returns [NetAvatar player](#netavatar).
 
 Example:
 ```lua
---check char position
 LogToConsole("I'm currently in (`2"..(GetLocal().posX//32).."`o,`2"..(GetLocal().posX//32).."`o)")
 ```
 
@@ -466,16 +427,9 @@ Returns [Inventory inventorylist](#inventory).
 
 Example:
 ```lua
---check dirt amount in inventory
-id = 2 -- dirt id = 2
-items = 0
 for _, item in pairs(getInventory()) do
-    if item.id == id then
-        items = item.amount
-        break
-    end
+    LogToConsole("I have = "..item.amount.." "..growtopia.getItemName(item.id))
 end
-LogToConsole("`2"..items)
 ```
 
 
@@ -486,7 +440,7 @@ Returns [Tile tile](#tile).
 
 Example:
 ```lua
---awdsawwad
+LogToConsole("Foreground id = "..getTile(0, 0).fg)
 ```
 
 
@@ -497,9 +451,9 @@ Returns [Tile tile](#tile).
 
 Example:
 ```lua
-GetTiles()
---no param
-return struct Tile tiles
+for _, tile in pairs(GetTiles()) do
+    LogToConsole("Block found in "..(tile.posX//32)..(tile.posY//32))
+end
 ```
 
 
@@ -510,9 +464,9 @@ Returns [WorldObject object](#worldobject).
 
 Example:
 ```lua
-getObjectList()
---no param
-return struct WorldObject object
+for _, obj in pairs(getObjectList()) do
+    LogToConsole("Object found in "..(obj.posX//32)..", "..(obj.posY//32))
+end
 ```
 
 
@@ -523,25 +477,25 @@ Returns [ClientNPC ClientNPC](#clientnpc).
 
 Example:
 ```lua
-getNPCList()
---no param
-return struct ClientNPC
+for _, ClientNPC in pairs(getNPCList()) do
+    LogToConsole("Found ghost in "..(npc.pos.x//32)..", "..(npc.pos.y//32))
+end
 ```
 
 
 ## getPlayerList or GetPlayerList
 `getPlayerList()` no param
 
-Returns [playerlist](#netavatar).
+Returns [NetAvatar playerlist](#netavatar).
 
 Example:
 ```lua
 --check player in the world
 players = ""
-for _, playerlist in pairs(getPlayerList()) do
-    players = players..playerlist.name..","
+for _, player in pairs(getPlayerList()) do
+    players = players..player.name..","
 end
-LogToConsole(players)
+LogToConsole(players:sub(0,-2))
 ```
 
 
@@ -553,6 +507,39 @@ Returns [NetAvatar player](#netavatar).
 Example:
 ```lua
 LogToConsole(getPlayerByNetID(1).name)
+```
+
+
+## sendPacket or SendPacket
+`sendPacket(int type, string packet, bool to_client_first)` 2 - 3 param
+
+Sends type and packet to server or to client first, no return.
+
+Example:
+```lua
+sendPacket(2, "action|respawn")
+```
+
+
+## sendPacketRaw or SendPacketRaw
+`sendPacketRaw(bool to_client_first, struct PacketRaw packet)`
+
+Sends [packet](#packetraw) to server or to client first.
+
+Example:
+```lua
+sendPacketRaw(false, {type = 3, value = 48, x = GetLocal().posX//32, y = GetLocal().posX//32, px = x*32, py = y*32, })
+```
+
+
+## sendVariant or SendVariant
+`sendVariant(variantlist)` or `(varlist, packet)` or `(variantlist, use_net_id, net_id, value)` 1 - 4 param
+
+Sends [Variantlist variantlist](#variantlist) to server, no return.
+
+Example:
+```lua
+sendVariant({v1 = "OnConsoleMessage", v2 = "Console here", v3 = 1, v4 = 0, v5 = 0})
 ```
 
 
@@ -582,7 +569,7 @@ end, "OnSendPacket")
 ## applyHook
 `applyHook(bool no_return)` 0 - 1 param
 
-Applies all defined hook functions inside a script.
+Applies all defined hook functions in the current script.
 
 Example:
 ```lua
@@ -683,9 +670,9 @@ editValue(string name, value)
 ## growlauncher
 | index                       | return         | description 
 | :-                          | :-             | :-          
-| getVersion()                | string version | aaa
-| isOnPos(int posx, int posy) | int version    | return version integer.
-| version                     | int version    | aaa
+| getVersion()                | string version | returns version string.
+| isOnPos(int posx, int posy) | int version    | returns version integer.
+| version                     | int version    | returns version integer.
 
 Example:
 ```lua
@@ -756,13 +743,16 @@ warn(text)
 ```
 
 
-## Tile
+## tile
+| Function                      | return   | Description
+| :-                            | :-       | :-
+| `setFg(int x, int y)`         | userdata | Returns userdata.
+| `setFg(userdata, int itemid)` | userdata | Sets visual foreground using item id.
+| `setBg(userdata, int itemid)` | userdata | Sets visual background using item id.
+
+Example:
 ```lua
-tile = {
-    setFg(?,number),
-    setBg(?,number),
-    getTile(number,number)
-}
+tile.setFg(tile.getTile(x,y), int itemid)
 ```
 
 
@@ -783,7 +773,7 @@ LogToConsole("My gems is "..GetGems())
 ## SetPathFlag
 `SetPathFlag(int flag)` (deprecated) 
 
-Sets flag of findpath into certain value, no return
+Sets flag of findpath into certain value, no return.
 
 Example:
 ```lua
