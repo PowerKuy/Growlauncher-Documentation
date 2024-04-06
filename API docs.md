@@ -75,6 +75,10 @@ unfinished: [addIntoModule](#addintomodule), [NewDrawList](#newdrawlist), [warn]
 * [SetPathFlag](#setpathflag)
 
 
+
+# Structs
+
+
 ## NetAvatar
 NetAvatar struct (char)
 ```lua
