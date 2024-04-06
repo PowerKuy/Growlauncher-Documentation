@@ -475,7 +475,7 @@ end
 
 
 ## getNPCList or GetNPCList
-`getNPCList` no param
+`getNPCList()` no param
 
 Returns [ClientNPC ClientNPC](#clientnpc).
 
