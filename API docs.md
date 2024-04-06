@@ -95,8 +95,8 @@ local NetAvatar = {
     sizeYenc,
     waterSpeed,
     status,
-    irisColor --[[= vec4]],
-    pupilColor --[[= vec4]],
+    irisColor --[[= vec4 (not added)]],
+    pupilColor --[[= vec4 (not added)]],
     equip = {
         hair,
         shirt,
