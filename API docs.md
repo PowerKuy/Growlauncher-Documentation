@@ -1,6 +1,6 @@
 # Growlauncher API
 
-Growlauncher supports [lua]() programming language that allows you to run scripts in Growtopia.
+Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
 
 
 # Struct
@@ -78,49 +78,50 @@ Growlauncher supports [lua]() programming language that allows you to run script
 NetAvatar struct (char)
 ```lua
 local NetAvatar = {
-    posX,
-    posY,
-    netID,
-    name,
-    userID,
-    country,
-    punchID,
-    guildflag,
-    isLeft,
-    posXenc,
-    posYenc,
-    sizeX,
-    sizeY,
-    sizeXenc,
-    sizeYenc,
-    waterSpeed,
-    status,
-    irisColor --[[= vec4 (not added)]],
-    pupilColor --[[= vec4 (not added)]],
+    int posX,
+    int posY,
+    int netID,
+    string name,
+    int userID,
+    string country,
+    int punchID,
+    int guildFlag,
+    bool isLeft,
+    float posXenc,
+    float posYenc,
+    int sizeX,
+    int sizeY,
+    float sizeXenc,
+    float sizeYenc,
+    float waterSpeed,
+    float status,
+    float irisColor, --[[= vec4, (not added)]]
+    float pupilColor, --[[= vec4, (not added)]]
     equip = {
-        hair,
-        shirt,
-        pants,
-        feet,
-        hand,
-        back,
-        face,
-        mask,
-        necklace
+        int hair,
+        int shirt,
+        int pants,
+        int feet,
+        int hand,
+        int back,
+        int face,
+        int mask,
+        int necklace
     },
     effect = {
-        hair,
-        shirt,
-        pants,
-        feet,
-        hand,
-        back,
-        face,
-        mask,
-        necklace
+        int hair,
+        int shirt,
+        int pants,
+        int feet,
+        int hand,
+        int back,
+        int face,
+        int mask,
+        int necklace
     }
 }
 ```
+
 ## VariantList
 VariantList struct (Variant Data)
 ```lua
@@ -133,6 +134,7 @@ local Variant = {
     v6 (int, string ,bool, vec2, vec3)
 }
 ```
+
 ## tankpacket struct
 TankPacket struct
 ```lua
@@ -146,6 +148,7 @@ local TankPacket = {
     time
 }
 ```
+
 ## WorldObject
 WorldObject struct 
 ```lua
@@ -158,6 +161,7 @@ local WorldObject = {
     amount
 }
 ```
+
 ## Inventory
 Inventory struct
 ```lua
@@ -166,6 +170,7 @@ local Inventory = {
     amount
 }
 ```
+
 ## Tile
 Tile struct
 ```lua
@@ -181,6 +186,7 @@ local Tile = {
     int coltype
 }
 ```
+
 ## TileExtra
 TileExtra Struct
 ```lua
@@ -195,6 +201,8 @@ local extra = {
     int growth,
     int fruitcount
 }
+```
+
 ## PacketRaw
 PacketRaw struct
 ```lua
@@ -211,6 +219,7 @@ local PacketRaw = {
     yspeed
 }
 ```
+
 ## ClientNPC
 ClientNPC struct
 ```lua
@@ -221,6 +230,7 @@ local ClientNPC = {
     int type
 }
 ```
+
 ## TileExtra
 TileExtra struct
 ```lua
@@ -231,6 +241,7 @@ local TileExtra = {
     int type
 }
 ```
+
 ## Data
 Data struct
 ```lua
@@ -242,6 +253,7 @@ local Data = {
     string alias
 }
 ```
+
 ## Vec2
 Vector2 struct
 ```lua
@@ -250,6 +262,7 @@ local Vec2 = {
     float y  --height
 }
 ```
+
 ## Vec3
 Vector3 struct
 ```lua
@@ -259,6 +272,7 @@ local Vec3 = {
     float z
 }
 ```
+
 ## Vec4
 Vector4 struct
 ```lua
@@ -270,248 +284,408 @@ local Vec4 = {
 }
 ```
 
+
+
 # Functions
+
 
 ## sendPacket or SendPacket
 `sendPacket(int type, string packet, bool to_client_first)` 2 - 3 param
 
 Sends type and packet to server or to client first.
+
+Example:
 ```lua
 sendPacket(int type, string packet, bool to_client_first)
 --no return
 ```
+
+
 ## sendPacketRaw or SendPacketRaw
-### `sendPacketRaw(bool to_client_first, struct PacketRaw packet)` 1 - 2 param
+`sendPacketRaw(bool to_client_first, struct PacketRaw packet)` 1 - 2 param
+
 Sends [packet](#netavatar-or-netavatar) to server or to client first.
+
+Example:
 ```lua
 sendPacketRaw(bool to_client_first, struct PacketRaw packet)
 --no return
 ```
+
+
 ## sendVariant or SendVariant
-### `sendVariant(VariantList variantlist, varlist, packet)` or `(VariantList variantlist, use_net_id, value)` 1 - 3 param
+`sendVariant(VariantList variantlist, varlist, packet)` or `(VariantList variantlist, use_net_id, value)` 1 - 3 param, no return.
+
 Sends [variantlist](#variantlist) to server.
+
+Example:
 ```lua
 sendVariant(struct VariantList variantlist)
 --no return
 ```
 
+
 ## getLocal or GetLocal
-### `getLocal()`
-Returns [player](#netavatar).
+`getLocal()` no param
+
+Returns [NetAvatar player](#netavatar).
+
+Example:
 ```lua
-getLocal()
---no param
-return struct NetAvatar player
+--check char position
+LogToConsole("I'm currently in (`2"..(GetLocal().posX//32).."`o,`2"..(GetLocal().posX//32).."`o)")
 ```
+
+
 ## getInventory or GetInventory
-### `getInventory()`
-Returns [inventorylist](#inventory).
+`getInventory()` no param
+
+Returns [Inventory inventorylist](#inventory).
+
+Example:
 ```lua
-getInventory()
---no param
-return struct Inventory inventorylist
+--check dirt amount in inventory
+id = 2 -- dirt id = 2
+items = 0
+for _, item in pairs(getInventory()) do
+    if item.id == id then
+        items = item.amount
+        break
+    end
+end
+LogToConsole("`2"..items)
 ```
+
+
 ## getTile or GetTile
-### `getTile(int tilex, int tiley)`
-Returns [tile](#tile).
+`getTile(int tilex, int tiley)`
+
+Returns [Tile tile](#tile).
+
+Example:
 ```lua
-getTile(int tilex, int tiley)
-return struct Tile tile
+--awdsawwad
 ```
+
+
 ## getTiles or GetTiles
-### `GetTiles()`
-Returns [tile](#tile).
+`GetTiles()` no param
+
+Returns [Tile tile](#tile).
+
+Example:
 ```lua
 GetTiles()
 --no param
 return struct Tile tiles
 ```
+
+
 ## getObjectList or GetObjectList
-### `getObjectList()`
-Returns [object](#worldobject).
+`getObjectList()` no param
+
+Returns [WorldObject object](#worldobject).
+
+Example:
 ```lua
 getObjectList()
 --no param
 return struct WorldObject object
 ```
+
+
 ## getNPCList or GetNPCList
-### `getNPCList`
-Returns [ClientNPC](#clientnpc).
+`getNPCList` no param
+
+Returns [ClientNPC ClientNPC](#clientnpc).
+
+Example:
 ```lua
 getNPCList()
 --no param
 return struct ClientNPC
 ```
+
+
 ## getPlayerList or GetPlayerList
-### `getPlayerList()`
+`getPlayerList()` no param
+
 Returns [playerlist](#netavatar).
+
+Example:
 ```lua
-getPlayerList()
---no param
-return struct NetAvatar playerlist
-```
-## getPlayerByNetID
-### `getPlayerByNetID()`
-Returns [player](#netavatar).
-```lua
-getPlayerByNetID(int)
-return struct NetAvatar
+--check player in the world
+players = ""
+for _, playerlist in pairs(getPlayerList()) do
+    players = players..playerlist.name..","
+end
+LogToConsole(players)
 ```
 
+
+## getPlayerByNetID
+`getPlayerByNetID(int netID)`
+
+Returns [NetAvatar player](#netavatar).
+
+Example:
+```lua
+LogToConsole(getPlayerByNetID(1).name)
+```
+
+
+
+
 ## sleep or Sleep
-### `sleep(int time)`
-Adds delay between actions (in miliseconds).
+`sleep(int time)`
+
+Adds delay between actions (in miliseconds), no return.
+
+Example:
 ```lua
-sleep(int time)
---no return
+LogToConsole("First")
+sleep(1000)
+LogToConsole("Second")
 ```
+
+
 ## LogToConsole
-### `LogToConsole(string text)`
-Sends text into the console.
+`LogToConsole(string text)`
+
+Sends text into the console, return string text.
+
+Example:
 ```lua
-LogToConsole(string text) 
-return string text
+LogToConsole("Console is here")
 ```
+
+
 ## sendNotification
-### `sendNotification(string text)`
-Sends notification with the growlauncher UI.
+`sendNotification(string text)`
+
+Sends notification with the growlauncher UI, no return.
+
+Example:
 ```lua
-sendNotification(string text) 
---no return
+sendNotification("Notification here")
 ```
+
+
 ## findPath or FindPath
-###  `findPath(x, y, bool check_only)`
-Move to a certain tile in a world using coordinate, returns bool isblocked.
+`findPath(x, y, bool check_only)` 2-3 params
+
+Move to/ check a certain tile in a world using coordinate, returns bool isblocked.
+
+Example:
 ```lua
-findPath(int x, int y, bool check_only)
--- 2-3 params
-return bool isblocked
+findPath(0,0) --move to top left of the world
 ```
+
+
 ## editToggle or EditToggle
-### `editToggle(string name, bool value)`
-Edit a toggle value.
+`editToggle(string name, bool value)`
+
+Edit a toggle value, no return.
+
+Example:
 ```lua
-editToggle(string name, bool value) 
---no return
+editToggle("ModFly", true) --turn the modfly on
 ```
+
+
 ## findItemID or FindItemID
-###  `findItemID(string item_name)`
-Returns item id using item name.
+`findItemID(string item_name)`
+
+Returns int itemid using item name.
+
+Example:
 ```lua
-findItemID(string item_name)
-return int itemid
+LogToConsole(findItemID("Dirt")) --log the itemid of dirt
 ```
+
+
 ## GetWorldName or getCurrentWorldName
-### `GetWorldName()` or `getCurrentWorldName()`
-Returns the current world you are in.
+`GetWorldName()` or `getCurrentWorldName()` no param
+
+Returns string worldname where you are in.
+
+Example:
 ```lua
-GetWorldName()
---no param
-return string worldname
+LogToConsole("I'm in world ".GetWorldName())
 ```
+
+
 ## growtopia
-| index function(args)                        | return | description                                               |
-| :-                                          | :-     | :-                                                        |
-| setWeather(int weatherid)                   | -      | Sets visual weather (0 < weatherid < 74).                 |
-| isOnPos(int posx, int posy)                 | bool   | Checks char position is on certain tile using coordinate. |
-| notify(string message)                      | -      | Notify a message like OnTextOverlay.                      |
-| sendDialog(string dialog)                   | -      | Sends dialog "OnDialogRequest" using var.v2.              |
-| getItemID(string item_name)                 | int    | Returns item id using item name.                          |
-| checkInventory(int item_id)                 | bool   | Checks if we item is available using item id.             |
-| getItemName(int item_id)                    | string | Returns item name using item id.                          |
-| checkInventoryCount(int item_id)            | int    | Returns item count in inventory using item id.            |
-| tileChange(int posx, int posy, int item_id) | bool   | Sends packetraw using pos and id.                         |
-| warpTo(string nameworld)                    | -      | Join a certain world.                                     |
-| enter(int x, int y)                         | -      | Enter a door/ portal near char using coordinate.          |
+| index function(args)                          | return | description                                               |
+| :-                                            | :-     | :-                                                        |
+| `setWeather(int weatherid)`                   | -      | Sets visual weather (0 < weatherid < 74).                 |
+| `isOnPos(int posx, int posy)`                 | bool   | Checks char position is on certain tile using coordinate. |
+| `notify(string message)`                      | -      | Notify a message like OnTextOverlay.                      |
+| `sendDialog(string dialog)`                   | -      | Sends dialog "OnDialogRequest" using var.v2.              |
+| `getItemID(string item_name)`                 | int    | Returns item id using item name.                          |
+| `checkInventory(int item_id)`                 | bool   | Checks if we item is available using item id.             |
+| `getItemName(int item_id)`                    | string | Returns item name using item id.                          |
+| `checkInventoryCount(int item_id)`            | int    | Returns item count in inventory using item id.            |
+| `tileChange(int posx, int posy, int item_id)` | bool   | Sends packetraw using pos and id.                         |
+| `warpTo(string nameworld)`                    | -      | Join a certain world.                                     |
+| `enter(int x, int y)` 0 or 2 param            | -      | Enter a door/ portal near char using coordinate.          |
+
+Examples:
 ```lua
-growtopia = {
-    setWeather(int weatherid), --no return
-    isOnPos(int posx, int posy), --return bool
-    notify(string message), --no return
-    sendDialog(string dialog), --no return
-    getItemID(string item_name), --return int
-    checkInventory(int item_id), --return bool
-    getItemName(int item_id), --return string
-    checkInventoryCount(int item_id), --return int
-    tileChange(int posx, int posy, int item_id), --return bool
-    warpTo(string nameworld), --no return
-    enter(int x, int y) --no return
-}
+--don't do all of this suddenly
+growtopia.setWeather(5)
+LogToConsole(growtopia.isOnPos(0, 0))
+growtopia.notify("Notif here")
+growtopia.sendDialog("add_textbox|Sample dialog|left|\nend_dialog|continue||ok")
+LogToConsole(growtopia.getItemID("Dirt"))
+LogToConsole(growtopia.checkInventory(2))
+LogToConsole(growtopia.getItemName(2))
+LogToConsole(growtopia.checkInventoryCount(2))
+growtopia.tileChange(GetLocal().posX//32, GetLocal().posY//32, 18)
+growtopia.warpTo("WORLD")
+growtopia.enter()
 ```
 
 ## sendDialog
-### `sendDialog(dialog)`
-Sends [dialog](#data) to the server.
+`sendDialog(Data dialog)`
+
+Sends [Data dialog](#data) to the server, no return.
+
+Example:
 ```lua
-sendDialog(--[[struct data]] dialog)
---no return
+sendDialog(dialog)
 ```
-### `addIntoModule(string json)`
-Add a custom module to growlauncher by using json.
+
 ## addIntoModule
+`addIntoModule(string json)`
+
+Add a custom module to growlauncher by using json, no return.
+
+Example:
 ```lua
 addIntoModule(string json)
 --no return
 ```
-# 
-### Hooks
+#
+# Hooks
 event_name = "onSendPacket(type,pkt)" or "onSendPacketRaw(pkt)" or "onVariant(var)" or "onGamePacket(pkt)" or "onDraw(deltaTime)}
 #
+
 ## CSleep
-### `CSleep(int time)`
-Add delay between actions inside a hook (in miliseconds).
+`CSleep(int time)`
+
+Add delay between actions inside a [hook](#hooks) (in miliseconds), no return.
+
+Example:
 ```lua
-CSleep(int time)
---no return
+CSleep(1000)
 ```
+
+
 ## addHook or AddHook
-### `addHook(function func, string event_name, bool no_return)` 2 - 3 param
+`addHook(function func, string event_name, bool no_return)` 2 - 3 param
+
 Hooks a certain event with any or certain return.
+
+Example:
 ```lua
-addHook(function func, string event_name, bool no_return)
---no return
+--disable trash
+addHook(function(type,pkt)
+    if type == 2 and pkt:find("trash") then
+        return true
+    end
+end, "OnSendPacket")
 ```
+
+
 ## applyHook
-### `applyHook(bool no_return)` 0 - 1 param
+`applyHook(bool no_return)` 0 - 1 param
+
 Applies all defined hook functions inside a script.
+
+Example:
 ```lua
+--disable trash
+function OnSendPacket(type,pkt)
+    if type == 2 and pkt:find("trash") then
+        return true
+    end
+end
 applyHook()
---no return
 ```
+
+
 ## removeHook or RemoveHook
-### `removeHook(string event_name)`
-Remove a certain hook by using event name.
+`removeHook(string event_name)`
+
+Remove a certain hook by using event name, no return.
+
+Example:
 ```lua
-removeHook(string event_name)
---no return
+
+removeHook("OnSendPacket")
 ```
+
+
 ## runThread
-### `runThread(function func, args)`
-Run a thread of a function or with arguments.
+`runThread(function func, args)`
+
+Run a thread of a function or with arguments, no return.
+
+Example:
 ```lua
-runThread(function func, args)
---no return
+AddHook(function(type,pkt)
+    if type == 2 then
+        runThread(function(p)
+            for a=1,3 do
+                LogToConsole(p)
+                CSleep(1000)
+            end
+        end, pkt)
+    end
+end, "OnSendPacket")
 ```
+
+
 ## runCoroutine
-### `runCoroutine(function func, args)`
-Run a coroutine of a function or with arguments.
+`runCoroutine(function func, args)`
+
+Run a coroutine of a function or with arguments, no return.
+
+Example:
 ```lua
-runCoroutine(function func, args)
---no return
+AddHook(function(type,pkt)
+    if type == 2 then
+        runCoroutine(function(p)
+            for a=1,3 do
+                LogToConsole(p)
+                CSleep(1000)
+            end
+        end, pkt)
+    end
+end, "OnSendPacket")
 ```
+
+
 ## getValue
-### `getValue(int type, string name_value)`
-Check the type and name.
+`getValue(int type, string name_value)`
+
+Check the type and name, return bool.
+
+Example:
 ```lua
 getValue(int type, string name_value)
-return bool
 ```
+
+
 ## editValue
-### `editValue(string name, value)`
-To edit the name and value.
+`editValue(string name, value)`
+
+To edit the name and value, no return.
+
+Example:
 ```lua
 editValue(string name, value)
---no return
 ```
 
 ## growlauncher
@@ -520,6 +694,8 @@ editValue(string name, value)
 | getVersion()                | string version | aaa
 | isOnPos(int posx, int posy) | int version    | return version integer.
 | version                     | int version    | aaa
+
+Example:
 ```lua
 growlauncher = {
     getVersion(), --no param, return string version
@@ -527,44 +703,66 @@ growlauncher = {
     version --return int ; version == getVersionInt(getVersion())
 }
 ```
+
+
 ## setMinimum
-### `setMinimum(string version)`
-Set a minimum version of growlauncher to run a script.
+`setMinimum(string version)`
+
+Set a minimum version of growlauncher to run a script, no return.
+
+Example:
 ```lua
 setMinimum(string version)
---no return
 ```
+
+
 ## getTime
-### `getTime()`
-Returns time.
+`getTime()` no param
+
+Returns int time.
 ```lua
 getTime()
---no param
 return int
 ```
+
+
 ## ImVec2
-### `ImVec2(vec2)`
-Sets [vec2](#growlauncher) as the width and height value
+`ImVec2(Vec2 vec2)`
+
+Sets [Vec2 vec2](#vec2) as the width and height value, return [Vec2 vec2](#vec2).
+
+Example:
 ```lua
-ImVec2(--[[struct Vector2]])
-return struct Vec2
+ImVec2(0,0)
 ```
+
+
 ## ImVec4
-### `ImVec2(vec4)`
-Sets [vec4](#vec4) as the color value.
+`ImVec4(Vec4 vec4)`
+
+Sets [Vec4 vec4](#vec4) as the color value, return [Vec4 vec4](#vec4).
+
+Example:
 ```lua
-ImVec4(--[[struct Vector4]])
-return struct Vec4
+ImVec4(0, 0.55f, 0.56f, 1)
 ```
+
+
 ## NewDrawList
+`NewDrawList()`
+Returns struct.
 ```lua
 NewDrawList()
-return struct 
 ```
+
+
 ## warn
+`warn(string text)`
 ```lua
-warn(string text)
+warn(text)
 ```
+
+
 ## Tile
 ```lua
 tile = {
@@ -574,19 +772,27 @@ tile = {
 }
 ```
 
+
+
 # Deprecated Functions
+
 ## GetGems
-### `GetGems()`
-(deprecated) Returns gems value.
+`GetGems()` no param (deprecated) 
+
+Returns int gems_amount.
+
+Example:
 ```lua
-GetGems()
---no param
-return int gems_amount
+LogToConsole("My gems is "..GetGems())
 ```
+
+
 ## SetPathFlag
-### `SetPathFlag(int flag)`
-(deprecated) Sets flag of findpath into certain value.
+`SetPathFlag(int flag)` (deprecated) 
+
+Sets flag of findpath into certain value, no return
+
+Example:
 ```lua
-SetPathFlag(int flag)
---no return
+SetPathFlag(1)
 ```
