@@ -273,7 +273,7 @@ local Vec4 = {
 # Functions
 
 ## sendPacket or SendPacket
-### `sendPacket(int type, string packet, bool to_client_first)` 2 - 3 param
+`sendPacket(int type, string packet, bool to_client_first)` 2 - 3 param
 Sends type and packet to server or to client first.
 ```lua
 sendPacket(int type, string packet, bool to_client_first)
