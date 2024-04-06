@@ -3,7 +3,7 @@
 Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
 
 
-# Struct
+# Structs
 
 * [PacketRaw](#packetraw)
 * [VariantList](#variantlist)
@@ -24,6 +24,18 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 
 # Functions
 
+* [Sleep](#sleep)
+* [LogToConsole](#logtoconsole)
+* [sendNotification](#sendnotification)
+* [FindPath](#findpath)
+* [EditToggle](#edittoggle)
+* [FindItemID](#finditemid)
+* [GetWorldName](#getworldname-or-getcurrentworldname)
+* [growtopia](#growtopia)
+
+* [sendDialog](#senddialog)
+* [AddIntoModule](#addintomodule)
+
 * [SendPacket](#sendpacket-or-sendpacket)
 * [SendPacketRaw](#sendpacketraw-or-sendpacketraw)
 * [SendVariant](#sendvariant-or-sendvariant)
@@ -37,21 +49,9 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 * [GetPlayerList](#getplayerlist-or-getplayerlist)
 * [getPlayerByNetID](#getplayerbynetid)
 
-* [Sleep](#sleep)
-* [LogToConsole](#logtoconsole)
-* [sendNotification](#sendnotification)
-* [FindPath](#findpath)
-* [EditToggle](#edittoggle)
-* [FindItemID](#finditemid)
-* [GetWorldName](#getworldname-or-getcurrentworldname)
-* [growtopia](#growtopia)
-
-* [sendDialog](#senddialog)
-* [AddIntoModule](#addintomodule)
-
-* [CSleep](#csleep)
 * [AddHook](#addhook)
 * [applyHook](#applyhook)
+* [CSleep](#csleep)
 * [removeHook](#removehook-or-removehook)
 * [runThread](#runthread)
 * [runCoroutine](#runcoroutine)
@@ -289,6 +289,128 @@ local Vec4 = {
 # Functions
 
 
+
+
+
+## sleep or Sleep
+`sleep(int time)`
+
+Adds delay between actions (in miliseconds), no return.
+
+Example:
+```lua
+LogToConsole("First")
+sleep(1000)
+LogToConsole("Second")
+```
+
+
+## LogToConsole
+`LogToConsole(string text)`
+
+Sends text into the console, return string text.
+
+Example:
+```lua
+LogToConsole("Console is here")
+```
+
+
+## sendNotification
+`sendNotification(string text)`
+
+Sends notification with the growlauncher UI, no return.
+
+Example:
+```lua
+sendNotification("Notification here")
+```
+
+
+## findPath or FindPath
+`findPath(x, y, bool check_only)` 2-3 params
+
+Move to/ check a certain tile in a world using coordinate, returns bool isblocked.
+
+Example:
+```lua
+findPath(0,0) --move to top left of the world
+```
+
+
+## editToggle or EditToggle
+`editToggle(string name, bool value)`
+
+Edit a toggle value, no return.
+
+Example:
+```lua
+editToggle("ModFly", true) --turn the modfly on
+```
+
+
+## findItemID or FindItemID
+`findItemID(string item_name)`
+
+Returns int itemid using item name.
+
+Example:
+```lua
+LogToConsole(findItemID("Dirt")) --log the itemid of dirt
+```
+
+
+## GetWorldName or getCurrentWorldName
+`GetWorldName()` or `getCurrentWorldName()` no param
+
+Returns string worldname where you are in.
+
+Example:
+```lua
+LogToConsole("I'm in world ".GetWorldName())
+```
+
+
+## growtopia
+| index function(args)                          | return | description                                               | Example
+| :-                                            | :-     | :-                                                        | :-
+| `setWeather(int weatherid)`                   | -      | Sets visual weather (0 < weatherid < 74).                 | `growtopia.setWeather(5)`
+| `isOnPos(int posx, int posy)`                 | bool   | Checks char position is on certain tile using coordinate. | `LogToConsole(growtopia.isOnPos(0, 0))`
+| `notify(string message)`                      | -      | Notify a message like OnTextOverlay.                      | `growtopia.notify("Notif here")`
+| `sendDialog(string dialog)`                   | -      | Sends dialog "OnDialogRequest" using var.v2.              | `growtopia.sendDialog("add_textbox|Sample dialog|left|\nend_dialog|continue||ok")`
+| `getItemID(string item_name)`                 | int    | Returns item id using item name.                          | `LogToConsole(growtopia.getItemID("Dirt"))`
+| `checkInventory(int item_id)`                 | bool   | Checks if we item is available using item id.             | `LogToConsole(growtopia.checkInventory(2))`
+| `getItemName(int item_id)`                    | string | Returns item name using item id.                          | `LogToConsole(growtopia.getItemName(2))`
+| `checkInventoryCount(int item_id)`            | int    | Returns item count in inventory using item id.            | `LogToConsole(growtopia.checkInventoryCount(2))`
+| `tileChange(int posx, int posy, int item_id)` | bool   | Sends packetraw using pos and id.                         | `growtopia.tileChange(GetLocal().posX//32, GetLocal().posY//32, 18)`
+| `warpTo(string nameworld)`                    | -      | Join a certain world.                                     | `growtopia.warpTo("WORLD")`
+| `enter(int x, int y)` 0 or 2 param            | -      | Enter a door/ portal near char using coordinate.          | `growtopia.enter()`
+
+
+
+## sendDialog
+`sendDialog(Data dialog)`
+
+Sends [Data dialog](#data) to the server, no return.
+
+Example:
+```lua
+sendDialog(dialog)
+```
+
+
+## addIntoModule
+`addIntoModule(string json)`
+
+Add a custom module to growlauncher by using json, no return.
+
+Example:
+```lua
+addIntoModule(string json)
+--no return
+```
+
+
 ## sendPacket or SendPacket
 `sendPacket(int type, string packet, bool to_client_first)` 2 - 3 param
 
@@ -435,151 +557,10 @@ LogToConsole(getPlayerByNetID(1).name)
 
 
 
-
-## sleep or Sleep
-`sleep(int time)`
-
-Adds delay between actions (in miliseconds), no return.
-
-Example:
-```lua
-LogToConsole("First")
-sleep(1000)
-LogToConsole("Second")
-```
-
-
-## LogToConsole
-`LogToConsole(string text)`
-
-Sends text into the console, return string text.
-
-Example:
-```lua
-LogToConsole("Console is here")
-```
-
-
-## sendNotification
-`sendNotification(string text)`
-
-Sends notification with the growlauncher UI, no return.
-
-Example:
-```lua
-sendNotification("Notification here")
-```
-
-
-## findPath or FindPath
-`findPath(x, y, bool check_only)` 2-3 params
-
-Move to/ check a certain tile in a world using coordinate, returns bool isblocked.
-
-Example:
-```lua
-findPath(0,0) --move to top left of the world
-```
-
-
-## editToggle or EditToggle
-`editToggle(string name, bool value)`
-
-Edit a toggle value, no return.
-
-Example:
-```lua
-editToggle("ModFly", true) --turn the modfly on
-```
-
-
-## findItemID or FindItemID
-`findItemID(string item_name)`
-
-Returns int itemid using item name.
-
-Example:
-```lua
-LogToConsole(findItemID("Dirt")) --log the itemid of dirt
-```
-
-
-## GetWorldName or getCurrentWorldName
-`GetWorldName()` or `getCurrentWorldName()` no param
-
-Returns string worldname where you are in.
-
-Example:
-```lua
-LogToConsole("I'm in world ".GetWorldName())
-```
-
-
-## growtopia
-| index function(args)                          | return | description                                               |
-| :-                                            | :-     | :-                                                        |
-| `setWeather(int weatherid)`                   | -      | Sets visual weather (0 < weatherid < 74).                 |
-| `isOnPos(int posx, int posy)`                 | bool   | Checks char position is on certain tile using coordinate. |
-| `notify(string message)`                      | -      | Notify a message like OnTextOverlay.                      |
-| `sendDialog(string dialog)`                   | -      | Sends dialog "OnDialogRequest" using var.v2.              |
-| `getItemID(string item_name)`                 | int    | Returns item id using item name.                          |
-| `checkInventory(int item_id)`                 | bool   | Checks if we item is available using item id.             |
-| `getItemName(int item_id)`                    | string | Returns item name using item id.                          |
-| `checkInventoryCount(int item_id)`            | int    | Returns item count in inventory using item id.            |
-| `tileChange(int posx, int posy, int item_id)` | bool   | Sends packetraw using pos and id.                         |
-| `warpTo(string nameworld)`                    | -      | Join a certain world.                                     |
-| `enter(int x, int y)` 0 or 2 param            | -      | Enter a door/ portal near char using coordinate.          |
-
-Examples:
-```lua
---don't do all of this suddenly
-growtopia.setWeather(5)
-LogToConsole(growtopia.isOnPos(0, 0))
-growtopia.notify("Notif here")
-growtopia.sendDialog("add_textbox|Sample dialog|left|\nend_dialog|continue||ok")
-LogToConsole(growtopia.getItemID("Dirt"))
-LogToConsole(growtopia.checkInventory(2))
-LogToConsole(growtopia.getItemName(2))
-LogToConsole(growtopia.checkInventoryCount(2))
-growtopia.tileChange(GetLocal().posX//32, GetLocal().posY//32, 18)
-growtopia.warpTo("WORLD")
-growtopia.enter()
-```
-
-## sendDialog
-`sendDialog(Data dialog)`
-
-Sends [Data dialog](#data) to the server, no return.
-
-Example:
-```lua
-sendDialog(dialog)
-```
-
-## addIntoModule
-`addIntoModule(string json)`
-
-Add a custom module to growlauncher by using json, no return.
-
-Example:
-```lua
-addIntoModule(string json)
---no return
-```
 #
 # Hooks
 event_name = "onSendPacket(type,pkt)" or "onSendPacketRaw(pkt)" or "onVariant(var)" or "onGamePacket(pkt)" or "onDraw(deltaTime)}
 #
-
-## CSleep
-`CSleep(int time)`
-
-Add delay between actions inside a [hook](#hooks) (in miliseconds), no return.
-
-Example:
-```lua
-CSleep(1000)
-```
 
 
 ## addHook or AddHook
@@ -612,6 +593,17 @@ function OnSendPacket(type,pkt)
     end
 end
 applyHook()
+```
+
+
+## CSleep
+`CSleep(int time)`
+
+Add delay between actions inside a [hook](#hooks) (in miliseconds), no return.
+
+Example:
+```lua
+CSleep(1000)
 ```
 
 
@@ -750,6 +742,7 @@ ImVec4(0, 0.55f, 0.56f, 1)
 
 ## NewDrawList
 `NewDrawList()`
+
 Returns struct.
 ```lua
 NewDrawList()
