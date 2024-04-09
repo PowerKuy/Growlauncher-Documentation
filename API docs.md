@@ -62,11 +62,11 @@ unfinished: [addIntoModule](#addintomodule), [getValue](#getvalue), [editValue](
 * [growlauncher](#growlauncher)
 * [setMinimum](#setminimum)
 * [GetTime](#gettime)
+* [tile](#tile-1)
 * [ImVec2](#imvec2)
 * [ImVec4](#imvec4)
 * [NewDrawList](#setminimum)
 * [warn](#warn)
-* [tile](#tile-1)
 
 
 # Deprecated Functions
@@ -236,17 +236,6 @@ local ClientNPC = {
 }
 ```
 
-## TileExtra
-TileExtra struct
-```lua
-local TileExtra = {
-    string label,
-    int owner,
-    int flag,
-    int type
-}
-```
-
 ## Data
 Data struct
 ```lua
@@ -286,6 +275,19 @@ local Vec4 = {
     float y, --r
     float z, --g
     float w  --b
+}
+```
+
+# enum type
+```lua
+enum MenuType{
+    Toggle = 0
+    Slider = 1
+    Item_Picker = 2
+    Json_Data = 3
+    Module = 4
+    String = 5
+    Select Tile = 6
 }
 ```
 
@@ -380,7 +382,7 @@ LogToConsole("I'm in world "..GetWorldName())
 | `setWeather(int weatherid)`                   | -      | Sets visual weather (0 until 74).    | `growtopia.setWeather(5)`
 | `isOnPos(int posx, int posy)`                 | bool   | Checks if char is on coordinate.     | `LogToConsole(growtopia.isOnPos(0, 0))`
 | `notify(string message)`                      | -      | Notify a message like OnTextOverlay. | `growtopia.notify("Notif here")`
-| `sendDialog(string dialog)`                   | -      | Sends growtopia dialog using var.v2. | `growtopia.sendDialog("add_textbox\|Ey\|left\|\nend_dialog\|\|\|ok")`
+| `sendDialog(string dialog)`                   | -      | Sends growtopia dialog using var.v2. | `growtopia.sendDialog("add_textbox\|Ey\|left\|\nadd_quick_exit")`
 | `getItemID(string item_name)`                 | int    | Returns item id using item name.     | `LogToConsole(growtopia.getItemID("Dirt"))`
 | `checkInventory(int item_id)`                 | bool   | Checks if you have an item using id. | `LogToConsole(growtopia.checkInventory(2))`
 | `getItemName(int item_id)`                    | string | Returns item name using item id.     | `LogToConsole(growtopia.getItemName(2))`
@@ -388,7 +390,6 @@ LogToConsole("I'm in world "..GetWorldName())
 | `tileChange(int posx, int posy, int item_id)` | bool   | Sends packetraw using pos and id.    | `growtopia.tileChange(50, 23, 18)`
 | `warpTo(string nameworld)`                    | -      | Join a certain world.                | `growtopia.warpTo("WORLD")`
 | `enter(int x, int y)` 0 or 2 param            | -      | Enter a door using coordinate.       | `growtopia.enter()`
-
 
 
 ## sendDialog
@@ -550,7 +551,7 @@ sendVariant({v1 = "OnConsoleMessage", v2 = "Console here", v3 = 1, v4 = 0, v5 = 
 
 #
 # Hooks
-event_name = "onSendPacket(type,pkt)" or "onSendPacketRaw(pkt)" or "onVariant(var)" or "onGamePacket(pkt)" or "onDraw(deltaTime)}
+event_name = "onSendPacket(type,pkt)" or "onSendPacketRaw(pkt)" or "onVariant(var)" or "onGamePacket(pkt)" or "onDraw(deltaTime) or "onValue(type,name,value)"
 #
 
 
@@ -674,9 +675,9 @@ editValue(string name, value)
 ## growlauncher
 | index                       | return         | description              | Example
 | :-                          | :-             | :-                       | :-
-| getVersion()                | string version | returns version string.  | `growlauncher.getVersion()`
-| isOnPos(int posx, int posy) | int version    | returns version integer. | `growlauncher.getVersionInt(growlauncher.getVersion())`
-| version                     | int version    | returns version integer. | `growlauncher.version`
+| getVersion()                | string version | returns version string.  | `LogToConsole(growlauncher.getVersion())`
+| isOnPos(int posx, int posy) | int version    | returns version integer. | `LogToConsole(growlauncher.getVersionInt(growlauncher.getVersion()))`
+| version                     | int version    | returns version integer. | `LogToConsole(growlauncher.version)`
 
 
 ## setMinimum
@@ -694,16 +695,32 @@ setMinimum(string version)
 `getTime()` no param
 
 Returns int time.
+
+Example:
 ```lua
-getTime()
+LogToConsole(getTime())
 return int
+```
+
+
+## tile
+(Prototype)
+| Function                      | return   | Description
+| :-                            | :-       | :-
+| `getTile(int x, int y)`       | userdata | Returns userdata.
+| `setFg(userdata, int itemid)` | userdata | Sets visual foreground using item id.
+| `setBg(userdata, int itemid)` | userdata | Sets visual background using item id.
+
+Example:
+```lua
+tile.setFg(tile.getTile(GetLocal().posX//32,GetLocal().posY//32), 7188)
 ```
 
 
 ## ImVec2
 `ImVec2(Vec2 vec2)`
 
-Sets [Vec2 vec2](#vec2) as the width and height value, return [Vec2 vec2](#vec2).
+Sets [Vec2](#vec2) as the width and height or value, returns [Vec2](#vec2).
 
 Example:
 ```lua
@@ -712,9 +729,9 @@ ImVec2(0,0)
 
 
 ## ImVec4
-`ImVec4(Vec4 vec4)`
+`ImVec4(Vec4)`
 
-Sets [Vec4 vec4](#vec4) as the color value, return [Vec4 vec4](#vec4).
+Sets [Vec4](#vec4) as the color value, returns [Vec4](#vec4).
 
 Example:
 ```lua
@@ -735,19 +752,6 @@ NewDrawList()
 `warn(string text)`
 ```lua
 warn(text)
-```
-
-
-## tile
-| Function                      | return   | Description
-| :-                            | :-       | :-
-| `setFg(int x, int y)`         | userdata | Returns userdata.
-| `setFg(userdata, int itemid)` | userdata | Sets visual foreground using item id.
-| `setBg(userdata, int itemid)` | userdata | Sets visual background using item id.
-
-Example:
-```lua
-tile.setFg(tile.getTile(GetLocal().posX//32,GetLocal().posY//32), 6)
 ```
 
 
