@@ -2,7 +2,10 @@
 
 Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
 
-unfinished: [addIntoModule](#addintomodule), [getValue](#getvalue), [editValue](editvalue) [NewDrawList](#newdrawlist), [warn](#warn)
+unfinished: [addIntoModule](#addintomodule), [NewDrawList](#newdrawlist), [warn](#warn)
+
+# Path
+```storage/emulated/0/Android/data/launcher.powerkuy/ScriptLua/```
 
 # Structs
 
@@ -18,7 +21,8 @@ unfinished: [addIntoModule](#addintomodule), [getValue](#getvalue), [editValue](
 * [TileExtra](#tileextra)
 * [Data](#data)
 
-* [Vec2](#vec2)
+* [Vec2i](#vec2i)
+* [Vec2f](#vec2f)
 * [Vec3](#vec3)
 * [Vec4](#vec4)
 
@@ -29,7 +33,7 @@ unfinished: [addIntoModule](#addintomodule), [getValue](#getvalue), [editValue](
 * [LogToConsole](#logtoconsole)
 * [sendNotification](#sendnotification)
 * [FindPath](#findpath)
-* [EditToggle](#edittoggle)
+* [EditToggle](#edittoggle-or-edittoggle-or-editvalue)
 * [FindItemID](#finditemid)
 * [GetWorldName](#getworldname-or-getcurrentworldname)
 * [growtopia](#growtopia)
@@ -50,14 +54,13 @@ unfinished: [addIntoModule](#addintomodule), [getValue](#getvalue), [editValue](
 * [SendPacketRaw](#sendpacketraw-or-sendpacketraw)
 * [SendVariant](#sendvariant-or-sendvariant)
 
-* [AddHook](#addhook)
+* [AddHook](#addhook-or-addhook)
 * [applyHook](#applyhook)
 * [CSleep](#csleep)
 * [removeHook](#removehook-or-removehook)
 * [runThread](#runthread)
 * [runCoroutine](#runcoroutine)
 * [getValue](#getvalue)
-* [editValue](#editvalue)
 
 * [growlauncher](#growlauncher)
 * [setMinimum](#setminimum)
@@ -131,12 +134,12 @@ local NetAvatar = {
 VariantList struct (Variant Data)
 ```lua
 local Variant = {
-    v1 (int, string ,bool, vec2, vec3)
-    v2 (int, string ,bool, vec2, vec3)
-    v3 (int, string ,bool, vec2, vec3)
-    v4 (int, string ,bool, vec2, vec3)
-    v5 (int, string ,bool, vec2, vec3)
-    v6 (int, string ,bool, vec2, vec3)
+    v1 (int, string, bool, vec2, vec3)
+    v2 (int, string, bool, vec2, vec3)
+    v3 (int, string, bool, vec2, vec3)
+    v4 (int, string, bool, vec2, vec3)
+    v5 (int, string, bool, vec2, vec3)
+    v6 (int, string, bool, vec2, vec3)
 }
 ```
 
@@ -225,12 +228,56 @@ local PacketRaw = {
 }
 ```
 
+
+## raw type 
+```
+PACKET_STATE = 0,
+PACKET_CALL_FUNCTION = 1
+PACKET_UPDATE_STATUS = 2
+PACKET_TILE_CHANGE_REQUEST = 3
+PACKET_SEND_MAP_DATA = 4
+PACKET_SEND_TILE_UPDATE_DATA = 5
+PACKET_SEND_TILE_UPDATE_DATA_MULTIPLE = 6
+PACKET_TILE_ACTIVATE_REQUEST = 7
+PACKET_TILE_APPLY_DAMAGE = 8
+PACKET_SEND_INVENTORY_STATE = 9
+PACKET_ITEM_ACTIVATE_REQUEST = 10
+PACKET_ITEM_ACTIVATE_OBJECT_REQUEST = 11
+PACKET_SEND_TILE_TREE_STATE = 12
+PACKET_MODIFY_ITEM_INVENTORY = 13
+PACKET_ITEM_CHANGE_OBJECT = 14
+PACKET_SEND_LOCK = 15
+PACKET_SEND_ITEM_DATABASE_DATA = 16
+PACKET_SEND_PARTICLE_EFFECT = 17
+PACKET_SET_ICON_STATE = 18
+PACKET_ITEM_EFFECT = 19
+PACKET_SET_CHARACTER_STATE = 20
+PACKET_PING_REPLY = 21
+PACKET_PING_REQUEST = 22
+PACKET_GOT_PUNCHED = 23
+PACKET_APP_CHECK_RESPONSE = 24
+PACKET_APP_INTEGRITY_FAIL = 25
+PACKET_DISCONNECT = 26
+PACKET_BATTLE_JOIN = 27
+PACKET_BATTLE_EVEN = 28
+PACKET_USE_DOOR = 29
+PACKET_SEND_PARENTAL = 30
+PACKET_GONE_FISHIN = 31
+PACKET_STEAM = 32
+PACKET_PET_BATTLE = 33
+PACKET_NPC = 34
+PACKET_SPECIAL = 35
+PACKET_SEND_PARTICLE_EFFECT_V2 = 36
+GAME_ACTIVE_ARROW_TO_ITEM = 37
+GAME_SELECT_TILE_INDEX = 38
+```
+
 ## ClientNPC
 ClientNPC struct
 ```lua
 local ClientNPC = {
-    Vec2 pos,
-    Vec2 targetpos,
+    Vec2i pos,
+    Vec2i targetpos,
     int id,
     int type
 }
@@ -248,12 +295,21 @@ local Data = {
 }
 ```
 
-## Vec2
+## Vec2i
 Vector2 struct
 ```lua
-local Vec2 = {
-    double x, -- x/ width
-    double y  -- y/ height
+local Vec2i = {
+    int x, -- x
+    int y  -- y
+}
+```
+
+## Vec2f
+Vector2 struct
+```lua
+local Vec2f = {
+    float x, -- width
+    float y  -- height
 }
 ```
 
@@ -266,6 +322,7 @@ local Vec3 = {
     float z
 }
 ```
+
 
 ## Vec4
 Vector4 struct
@@ -333,7 +390,7 @@ sendNotification("Notification here")
 
 
 ## findPath or FindPath
-`findPath(x, y, bool check_only)` 2-3 params
+`findPath(int x, int y, bool check_only)` 2-3 params
 
 Move to/ check a certain tile in a world using coordinate, returns bool isblocked.
 
@@ -343,7 +400,7 @@ findPath(0,0) --move to top left of the world
 ```
 
 
-## editToggle or EditToggle
+## editToggle or EditToggle or editValue
 `editToggle(string name, bool value)`
 
 Edit a toggle value, no return.
@@ -399,18 +456,7 @@ Sends [Data dialog](#data) to the server, no return.
 
 Example:
 ```lua
-sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://cdn.discordapp.com/attachments/887373003820789820/1218932537062064288/261262976_436671485194162_5765880893693920153_n-removebg-preview.png?ex=661beb63&is=66097663&hm=2a494d7b1b9a52cc66de99cd47bfddcbb0676023363790a668aaaacab3a22f04&", alias = "Eys"})
-```
-
-
-## addIntoModule
-`addIntoModule(string json)`
-
-Add a custom module to growlauncher by using json, no return.
-
-Example:
-```lua
-addIntoModule(json)
+sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://media.discordapp.net/attachments/1208061157160521779/1228934600529678386/Ey_iniey.png?ex=662dd989&is=661b6489&hm=3bf0116594328b864c92560ec3b163fcaa71517623d09d6efd8713185854e7cd", alias = "Eys"})
 ```
 
 
@@ -421,7 +467,7 @@ Returns [NetAvatar player](#netavatar).
 
 Example:
 ```lua
-LogToConsole("I'm currently in `2"..(GetLocal().posX//32).."`o,`2"..(GetLocal().posX//32).."`o")
+LogToConsole("I'm currently in `2"..(GetLocal().posX//32).."`o,`2"..(GetLocal().posX//32))
 ```
 
 
@@ -544,14 +590,26 @@ Sends [Variantlist variantlist](#variantlist) to server, no return.
 
 Example:
 ```lua
-sendVariant({v1 = "OnConsoleMessage", v2 = "Console here", v3 = 1, v4 = 0, v5 = 0})
+sendVariant({v1 = "OnConsoleMessage", v2 = "Console here"})
 ```
 
 
 
 #
-# Hooks
-event_name = "onSendPacket(type,pkt)" or "onSendPacketRaw(pkt)" or "onVariant(var)" or "onGamePacket(pkt)" or "onDraw(deltaTime) or "onValue(type,name,value)"
+# Hook Events
+
+``onSendPacket(type,pkt)`` 
+
+``onSendPacketRaw(pkt)``
+
+``onVariant(var)``
+
+``onGamePacket(pkt)``
+
+``onDraw(deltaTime)``
+
+``onValue(type, name, value)``
+
 #
 
 
@@ -567,7 +625,7 @@ addHook(function(type,pkt)
     if type == 2 and pkt:find("trash") then
         return true
     end
-end, "OnSendPacket")
+end, "onSendPacket")
 ```
 
 
@@ -607,7 +665,7 @@ Remove a certain hook by using event name, no return.
 Example:
 ```lua
 
-removeHook("OnSendPacket")
+removeHook("onSendPacket")
 ```
 
 
@@ -627,7 +685,7 @@ AddHook(function(type,pkt)
             end
         end, pkt)
     end
-end, "OnSendPacket")
+end, "onSendPacket")
 ```
 
 
@@ -647,30 +705,31 @@ AddHook(function(type,pkt)
             end
         end, pkt)
     end
-end, "OnSendPacket")
+end, "onSendPacket")
 ```
 
 
 ## getValue
 `getValue(int type, string name_value)`
 
-Check the type and name, return bool.
+Check the value using type and name.
 
 Example:
 ```lua
-getValue(int type, string name_value)
+getValue(0, "ModFly")
 ```
 
 
-## editValue
-`editValue(string name, value)`
+## addIntoModule
+`addIntoModule(string json)`
 
-To edit the name and value, no return.
+Add a custom module to growlauncher by using json, no return.
 
 Example:
 ```lua
-editValue(string name, value)
+addIntoModule(json)
 ```
+
 
 ## growlauncher
 | index                       | return         | description              | Example
@@ -718,9 +777,9 @@ tile.setFg(tile.getTile(GetLocal().posX//32,GetLocal().posY//32), 7188)
 
 
 ## ImVec2
-`ImVec2(Vec2 vec2)`
+`ImVec2(Vec2f)`
 
-Sets [Vec2](#vec2) as the width and height or value, returns [Vec2](#vec2).
+Sets [Vec2f](#vec2f) as the width and height or value, returns [Vec2f](#vec2f).
 
 Example:
 ```lua
@@ -750,6 +809,8 @@ NewDrawList()
 
 ## warn
 `warn(string text)`
+
+No return.
 ```lua
 warn(text)
 ```
@@ -778,3 +839,194 @@ Example:
 ```lua
 SetPathFlag(1)
 ```
+
+# JSON Module Attributes
+
+| string type  | icon | menu | text | alias | default | expandable | background | list_child | min | max | support_text | fill | type | value |
+| :-           | :-:  | :-:  | :-:  | :-:   | :-:     | :-:        | :-:        | :-:        | :-: | :-: | :-:          | :-:  | :-:  | :-:   |
+| label        | ✔    | ✔   | ❌   | ❌   | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | -    | -      |
+| dialog       | ❌   | ✔   | ✔    | ❌   | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ✔            | ✔   | -    | -      |
+| toggle       | ❌   | ❌  | ✔    | ✔    | ✔      | ✔          | ✔          | ✔         | ❌  | ❌ | ❌           | ❌  | 0    | bool   |
+| slider       | ❌   | ❌  | ✔    | ✔    | ✔      | ❌         | ❌         | ❌        | ✔   | ✔  | ❌           | ❌  | 1    | int    |
+| item_picker  | ❌   | ❌  | ✔    | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 2    | string |
+| json_data    | ❌   | ❌  | ❌   | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 3    | string |
+| module       | ❌   | ❌  | ❌   | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 4    | string |
+| input_string | ✔    | ❌  | ✔    | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 5    | string |
+| select_tile  | ❌   | ❌  | ❌   | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 6    | table  |
+
+
+## Sub
+
+To make new category inside module, no return.
+
+Example:
+```json
+{
+    "sub_name": "Ey's Wheel",
+    "icon": "Loop",
+    "menu": []
+}
+```
+
+
+## Label
+
+To make label inside category, no return.
+
+Example:
+```json
+{
+    "type": "label",
+    "text": "text"
+}
+```
+
+
+## Dialog
+
+To make dialog inside category.
+
+Example:
+```json
+{
+    "type": "dialog",
+    "text": "Setting",
+    "support_text": "Save path setting",
+    "fill": true,
+    "menu": []
+}
+```
+
+
+## Toggle
+
+type = 0
+
+To make toggle inside category, returns bool value.
+
+Example:
+```json
+{
+    "type": "toggle",
+    "text": "text",
+    "alias": "alias_name",
+    "default": true, //optional
+    "expandable": true, //optional
+    "background": false, //optional
+    "list_child": [] //optional
+}
+```
+
+
+## Slider
+
+type = 1
+
+To make slider inside category, returns int value.
+
+Example:
+```json
+{
+    "type": "slider",
+    "text": "text",
+    "min": 0,
+    "max": 100,
+    "default": 50,
+    "alias": "alias_name"
+}
+```
+
+
+## Item Picker
+
+type = 2
+
+To make item picker inside category, returns string value.
+
+Example:
+```json
+{
+    "type": "item_picker",
+    "text": "text",
+    "alias": "alias_name"
+}
+```
+
+
+## Json Data
+
+type = 3
+
+Example:
+```json
+{
+    "type": "json_data",
+    "alias": "alias_name"
+}
+```
+
+
+## Module
+
+type = 4
+
+Example:
+```json
+{
+    "type": "module",
+    "alias": "alias_name"
+}
+```
+
+
+## String
+
+type = 5
+
+Returns string value.
+
+Example:
+```json
+{
+    "type": "input_string",
+    "text": "text",
+    "default": "text", //optional
+    "alias": "alias_name"
+}
+```
+
+
+## Select Tile
+
+type = 6
+
+To make tile selector inside category, returns [Vec2i value](#Vec2i).
+
+Example:
+```json
+{
+    "type": "select_tile",
+    "alias": "alias_name"
+}
+```
+
+
+
+#
+
+
+This API documentation was made by @iniey / <@763737006450671646> (discord)
+
+Helper in [Powerkuy Community](https://discord.gg/powerkuyofficial)
+
+Admin in [Growtopia Mart](https://discord.gg/gtmart)
+
+Youtube: [IniEy](https://youtube.com/@iniey)
+
+
+
+set string default?
+more example?
+
+
+
