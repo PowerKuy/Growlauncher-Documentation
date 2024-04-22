@@ -1168,7 +1168,7 @@ Example:
     "text": "just ey",
     "alias": "alias_ey",
     "default": "[
-        [\"Ey 1\"])
+        [\"Ey 1\"]
         [\"Ey 2\", \"iniey 2\"]
     ]"
 }
@@ -1188,7 +1188,7 @@ Don't ask me about ImGui :v
 
 
 
----
+# Credits
 
 This Growlauncher API documentation was made by @iniey and @powerkuy_
 
