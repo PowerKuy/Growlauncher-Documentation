@@ -929,7 +929,7 @@ To make sub-module inside module, no return.
 Example:
 ```json
 {
-    "sub_name": "Ey's",
+    "sub_name": "Ey",
     "icon": "Loop",
     "menu": []
 }
@@ -1129,9 +1129,9 @@ Example:
 ```json
 {
     "type": "input_string",
-    "text": "just ey", //optional
+    "text": "just ey",
     "default": "default", //optional
-    "icon": "", //optional
+    "icon": "Edit",
     "alias": "alias_ey"
 }
 ```
@@ -1147,8 +1147,8 @@ Example:
 ```json
 {
     "type": "tile_select",
-    "text": "just ey", //optional
-    "count": 5, //optional
+    "text": "just ey",
+    "count": 5,
     "default": "{}",
     "alias": "alias_ey"
 }
