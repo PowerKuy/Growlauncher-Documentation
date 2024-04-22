@@ -1,11 +1,13 @@
+
 # Growlauncher API
 
 Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
 
-unfinished: [addIntoModule](#addintomodule), [NewDrawList](#newdrawlist), [warn](#warn)
 
 # Path
-```storage/emulated/0/Android/data/launcher.powerkuy/ScriptLua/```
+
+```storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/```
+
 
 # Structs
 
@@ -37,9 +39,7 @@ unfinished: [addIntoModule](#addintomodule), [NewDrawList](#newdrawlist), [warn]
 * [FindItemID](#finditemid)
 * [GetWorldName](#getworldname-or-getcurrentworldname)
 * [growtopia](#growtopia)
-
 * [sendDialog](#senddialog)
-* [AddIntoModule](#addintomodule)
 
 * [GetLocal](#getlocal-or-getlocal)
 * [GetInventory](#getinventory-or-getinventory)
@@ -76,6 +76,25 @@ unfinished: [addIntoModule](#addintomodule), [NewDrawList](#newdrawlist), [warn]
 
 * [GetGems](#getgems)
 * [SetPathFlag](#setpathflag)
+
+
+# Modules
+
+* [addIntoModule](#addintomodule)
+* [Sub-Module](#sub-module)
+* [Labelapp](#labelapp)
+* [Label](#label)
+* [Tooltip](#tooltip)
+* [Divider](#divider)
+* [Dialog](#dialog)
+* [Toggle](#toggle)
+* [Toggle Button](#toggle-button)
+* [Button](#button)
+* [Slider](#slider)
+* [Input Int](#input-int)
+* [Item Picker](#item-picker)
+* [String](#string)
+* [Tile Select](#tile-select)
 
 
 
@@ -335,18 +354,6 @@ local Vec4 = {
 }
 ```
 
-# enum type
-```lua
-enum MenuType{
-    Toggle = 0
-    Slider = 1
-    Item_Picker = 2
-    Json_Data = 3
-    Module = 4
-    String = 5
-    Select Tile = 6
-}
-```
 
 
 
@@ -439,7 +446,7 @@ LogToConsole("I'm in world "..GetWorldName())
 | `setWeather(int weatherid)`                   | -      | Sets visual weather (0 until 74).    | `growtopia.setWeather(5)`
 | `isOnPos(int posx, int posy)`                 | bool   | Checks if char is on coordinate.     | `LogToConsole(growtopia.isOnPos(0, 0))`
 | `notify(string message)`                      | -      | Notify a message like OnTextOverlay. | `growtopia.notify("Notif here")`
-| `sendDialog(string dialog)`                   | -      | Sends growtopia dialog using var.v2. | `growtopia.sendDialog("add_textbox\|Ey\|left\|\nadd_quick_exit")`
+| `sendDialog(string dialog)`                   | -      | Sends growtopia dialog using var.v2. | `growtopia.sendDialog("add_textbox\|iniey\|left\|\nadd_quick_exit")`
 | `getItemID(string item_name)`                 | int    | Returns item id using item name.     | `LogToConsole(growtopia.getItemID("Dirt"))`
 | `checkInventory(int item_id)`                 | bool   | Checks if you have an item using id. | `LogToConsole(growtopia.checkInventory(2))`
 | `getItemName(int item_id)`                    | string | Returns item name using item id.     | `LogToConsole(growtopia.getItemName(2))`
@@ -457,6 +464,19 @@ Sends [Data dialog](#data) to the server, no return.
 Example:
 ```lua
 sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://media.discordapp.net/attachments/1208061157160521779/1228934600529678386/Ey_iniey.png?ex=662dd989&is=661b6489&hm=3bf0116594328b864c92560ec3b163fcaa71517623d09d6efd8713185854e7cd", alias = "Eys"})
+```
+
+
+## localPlayer
+`localPlayer()` no param (still on test, maybe changed or removed)
+
+Change local player value (punchID and name)
+
+return {pos = {x,y}, punchID, userID, name}
+
+Example:
+```lua
+localPlayer().name = "`cIniEy`o"
 ```
 
 
@@ -598,17 +618,17 @@ sendVariant({v1 = "OnConsoleMessage", v2 = "Console here"})
 #
 # Hook Events
 
-``onSendPacket(type,pkt)`` 
+`onSendPacket(type,pkt)`
 
-``onSendPacketRaw(pkt)``
+`onSendPacketRaw(pkt)`
 
-``onVariant(var)``
+`onVariant(var)`
 
-``onGamePacket(pkt)``
+`onGamePacket(pkt)`
 
-``onDraw(deltaTime)``
+`onDraw(deltaTime)`
 
-``onValue(type, name, value)``
+`onValue(type, name, value)`
 
 #
 
@@ -672,7 +692,7 @@ removeHook("onSendPacket")
 ## runThread
 `runThread(function func, args)`
 
-Run a thread of a function or with arguments, no return.
+Run a thread of a function with arguments, no return.
 
 Example:
 ```lua
@@ -692,7 +712,7 @@ end, "onSendPacket")
 ## runCoroutine
 `runCoroutine(function func, args)`
 
-Run a coroutine of a function or with arguments, no return.
+Run a coroutine of a function with arguments, no return.
 
 Example:
 ```lua
@@ -720,17 +740,6 @@ getValue(0, "ModFly")
 ```
 
 
-## addIntoModule
-`addIntoModule(string json)`
-
-Add a custom module to growlauncher by using json, no return.
-
-Example:
-```lua
-addIntoModule(json)
-```
-
-
 ## growlauncher
 | index                       | return         | description              | Example
 | :-                          | :-             | :-                       | :-
@@ -746,7 +755,7 @@ Set a minimum version of growlauncher to run a script, no return.
 
 Example:
 ```lua
-setMinimum(string version)
+setMinimum("6.0.20")
 ```
 
 
@@ -801,7 +810,9 @@ ImVec4(0, 0.55f, 0.56f, 1)
 ## NewDrawList
 `NewDrawList()` no param
 
-Returns struct.
+Returns struct. (skip)
+
+Example:
 ```lua
 NewDrawList()
 ```
@@ -810,9 +821,11 @@ NewDrawList()
 ## warn
 `warn(string text)`
 
-No return.
+No return. (skip)
+
+Example:
 ```lua
-warn(text)
+warn("warn text")
 ```
 
 
@@ -840,58 +853,153 @@ Example:
 SetPathFlag(1)
 ```
 
-# JSON Module Attributes
-
-| string type  | icon | menu | text | alias | default | expandable | background | list_child | min | max | support_text | fill | type | value |
-| :-           | :-:  | :-:  | :-:  | :-:   | :-:     | :-:        | :-:        | :-:        | :-: | :-: | :-:          | :-:  | :-:  | :-:   |
-| label        | ✔    | ✔   | ❌   | ❌   | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | -    | -      |
-| dialog       | ❌   | ✔   | ✔    | ❌   | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ✔            | ✔   | -    | -      |
-| toggle       | ❌   | ❌  | ✔    | ✔    | ✔      | ✔          | ✔          | ✔         | ❌  | ❌ | ❌           | ❌  | 0    | bool   |
-| slider       | ❌   | ❌  | ✔    | ✔    | ✔      | ❌         | ❌         | ❌        | ✔   | ✔  | ❌           | ❌  | 1    | int    |
-| item_picker  | ❌   | ❌  | ✔    | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 2    | string |
-| json_data    | ❌   | ❌  | ❌   | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 3    | string |
-| module       | ❌   | ❌  | ❌   | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 4    | string |
-| input_string | ✔    | ❌  | ✔    | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 5    | string |
-| select_tile  | ❌   | ❌  | ❌   | ✔    | ❌     | ❌         | ❌         | ❌        | ❌  | ❌ | ❌           | ❌  | 6    | table  |
 
 
-## Sub
+# Modules
 
-To make new category inside module, no return.
+
+## addIntoModule
+`addIntoModule(string json)`
+
+Add a custom module to growlauncher by using json, no return.
+
+Example:
+```lua
+json = [[
+    {
+        "sub_name": "Ey's Module",
+        "icon": "Verified",
+        "menu": [
+            {
+                "type": "label",
+                "text": "IniEy"
+            },
+            {
+                "type": "toggle",
+                "text": "IniEy",
+                "alias": "alias_ey"
+            }
+        ]
+    }
+]]
+addIntoModule(json)
+```
+
+
+## enum Menutype
+```lua
+enum MenuType = {
+    Toggle = 0
+    Slider = 1
+    Item_Picker = 2
+    Json_Data = 3
+    Module = 4
+    String = 5
+    Select Tile = 6
+    Display List = 7
+}
+```
+
+
+| `type`          | `icon` | `menu` | `text` | `alias` | `default` | `expandable` | `always_expand` | `background` | `list_child` | `min` | `max` | `use_dot` | `step` | `support_text` | `fill` | return`type,value` |
+| :-              | :-:    | :-:    | :-:    | :-:     | :-:       | :-:          | :-:             | :-:          | :-:          | :-:   | :-:   | :-:       | :-:    | :-:            | :-:    | :-                                  |
+| `labelapp`      | ✔      | ✔     | ❌     | ❌     | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | -                   |
+| `label`         | ❌     | ❌    | ✔      | ❌     | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | -                   |
+| `tooltip`       | ✔      | ❌    | ✔      | ❌     | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ✔             | ❌     | -                   |
+| `divider`       | ❌     | ❌    | ❌     | ❌     | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | -                   |
+| `dialog`        | ❌     | ✔     | ✔      | ❌     | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ✔             | ✔      | -                   |
+| `toggle`        | ❌     | ❌    | ✔      | ✔      | ✔         | ✔           | ✔               | ✔           | ✔            | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 0, `bool`           |
+| `toggle_button` | ❌     | ❌    | ✔      | ✔      | ✔         | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 0, `bool`           |
+| `button`        | ❌     | ❌    | ✔      | ✔      | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 0, `bool`           |
+| `slider`        | ❌     | ❌    | ✔      | ✔      | ✔         | ❌          | ❌              | ❌          | ❌           | ✔    | ✔     | ✔        | ✔      | ❌            | ❌     | 1, `int`            |
+| `input_int`     | ✔      | ❌    | ✔      | ✔      | ✔         | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 1, `int`            |
+| `item_picker`   | ❌     | ❌    | ✔      | ✔      | ✔         | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 2, `string`         |
+| `input_string`  | ✔      | ❌    | ✔      | ✔      | ✔         | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 5, `string`         |
+| `select_tile`   | ❌     | ❌    | ❌     | ✔      | ✔         | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 6, `table {x,y}`          |
+| `display_list`   | ❌     | ❌    | ✔      | ✔      | ✔         | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | 7, `{selected, index}`          |
+
+
+Icon source: `https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Filled`
+
+
+## Sub-module
+
+To make sub-module inside module, no return.
 
 Example:
 ```json
 {
-    "sub_name": "Ey's Wheel",
+    "sub_name": "Ey's",
     "icon": "Loop",
     "menu": []
 }
 ```
 
 
+## Labelapp
+
+To make labelapp inside module, no return.
+
+Example:
+```json
+{
+    "type": "labelapp",
+    "icon": "Loop",
+    "text": "just ey"
+}
+```
+
+
 ## Label
 
-To make label inside category, no return.
+To make label inside sub-module, no return.
 
 Example:
 ```json
 {
     "type": "label",
-    "text": "text"
+    "text": "just ey"
+}
+```
+
+
+## Tooltip
+
+To make tooltip inside sub-module, no return.
+
+Example:
+```json
+{
+    "type": "tooltip",
+    "icon": "note_icon",
+    "text": "just ey",
+    "support_text": "support ey"
+}
+```
+
+
+## Divider
+
+To make divider inside sub-module, no return.
+
+Example:
+```json
+{
+    "type": "divider"
 }
 ```
 
 
 ## Dialog
 
-To make dialog inside category.
+To make dialog inside sub-module.
 
 Example:
 ```json
 {
     "type": "dialog",
-    "text": "Setting",
-    "support_text": "Save path setting",
+    "text": "just ey",
+    "support_text": "support ey",
     "fill": true,
     "menu": []
 }
@@ -902,19 +1010,53 @@ Example:
 
 type = 0
 
-To make toggle inside category, returns bool value.
+To make toggle inside sub-module, returns bool value.
 
 Example:
 ```json
 {
-    "type": "toggle",
-    "text": "text",
-    "alias": "alias_name",
+    "type": "toggle", // or toggle_button
+    "text": "just ey", //optional
     "default": true, //optional
+    "alias": "alias_ey",
     "expandable": true, //optional
+    "always_expand": true, //optional
     "background": false, //optional
     "list_child": [] //optional
 }
+```
+
+
+## Toggle Button
+
+type = 0
+
+To make toggle button inside sub-module, returns bool value.
+
+Example:
+```json
+{
+    "type": "toggle", // or toggle_button
+    "text": "just ey", //optional
+    "default": true, //optional
+    "alias": "alias_ey"
+}
+```
+
+
+## Button
+
+type = 0
+
+To make button inside sub-module, returns bool value (false).
+
+Example:
+```json
+{
+    "type": "button",
+    "text": "just ey",
+    "alias": "alias_ey"
+},
 ```
 
 
@@ -922,17 +1064,39 @@ Example:
 
 type = 1
 
-To make slider inside category, returns int value.
+To make slider inside sub-module, returns int value.
 
 Example:
 ```json
 {
     "type": "slider",
-    "text": "text",
+    "text": "just ey", //optional
     "min": 0,
     "max": 100,
-    "default": 50,
-    "alias": "alias_name"
+    "default": 50, //optional
+    "use_dot": true, //optional
+    "step": 5, //optional
+    "alias": "alias_ey"
+}
+```
+
+
+## Input Int
+
+type = 1
+
+To make input int inside sub-module, returns int value.
+
+Example:
+```json
+{
+    "type": "input_int",
+    "text": "just ey",
+    "default": "200",
+    "label": "label",
+    "placeholder": "hold ey",
+    "icon": "Loop",
+    "alias": "alias_ey"
 }
 ```
 
@@ -941,40 +1105,16 @@ Example:
 
 type = 2
 
-To make item picker inside category, returns string value.
+To make item picker inside sub-module, returns `string value`.
 
 Example:
 ```json
 {
     "type": "item_picker",
-    "text": "text",
-    "alias": "alias_name"
-}
-```
-
-
-## Json Data
-
-type = 3
-
-Example:
-```json
-{
-    "type": "json_data",
-    "alias": "alias_name"
-}
-```
-
-
-## Module
-
-type = 4
-
-Example:
-```json
-{
-    "type": "module",
-    "alias": "alias_name"
+    "text": "just ey", //optional
+    "item": "Blank",
+    "default": "Blank", //optional
+    "alias": "alias_ey"
 }
 ```
 
@@ -989,24 +1129,48 @@ Example:
 ```json
 {
     "type": "input_string",
-    "text": "text",
-    "default": "text", //optional
-    "alias": "alias_name"
+    "text": "just ey", //optional
+    "default": "default", //optional
+    "icon": "", //optional
+    "alias": "alias_ey"
 }
 ```
 
 
-## Select Tile
+## Tile Select
 
 type = 6
 
-To make tile selector inside category, returns [Vec2i value](#Vec2i).
+To make tile selection dialog inside sub-module, returns [Vec2i value](#Vec2i).
 
 Example:
 ```json
 {
-    "type": "select_tile",
-    "alias": "alias_name"
+    "type": "tile_select",
+    "text": "just ey", //optional
+    "count": 5, //optional
+    "default": "{}",
+    "alias": "alias_ey"
+}
+```
+
+
+## Display list
+
+type = 7
+
+To make display list inside sub-module, returns {selected, index} value.
+
+Example:
+```json
+{
+    "type": "display_list",
+    "text": "just ey",
+    "alias": "alias_ey",
+    "default": "[
+        [\"Ey 1\"])
+        [\"Ey 2\", \"iniey 2\"]
+    ]"
 }
 ```
 
@@ -1014,8 +1178,19 @@ Example:
 
 #
 
+[Powerkuy's sample script](https://discord.com/channels/897496245373906995/1230832789541224489/1230832789541224489)
 
-This API documentation was made by @iniey / <@763737006450671646> (discord)
+#
+
+Don't ask me about ImGui :v
+
+#
+
+
+
+#
+
+This Growlauncher API documentation was made by iniey and Powerkuy
 
 Helper in [Powerkuy Community](https://discord.gg/powerkuyofficial)
 
@@ -1023,10 +1198,6 @@ Admin in [Growtopia Mart](https://discord.gg/gtmart)
 
 Youtube: [IniEy](https://youtube.com/@iniey)
 
-
-
-set string default?
-more example?
-
+---
 
 
