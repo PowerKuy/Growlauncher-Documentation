@@ -1188,15 +1188,9 @@ Don't ask me about ImGui :v
 
 
 
-#
+---
 
-This Growlauncher API documentation was made by iniey and Powerkuy
-
-Helper in [Powerkuy Community](https://discord.gg/powerkuyofficial)
-
-Admin in [Growtopia Mart](https://discord.gg/gtmart)
-
-Youtube: [IniEy](https://youtube.com/@iniey)
+This Growlauncher API documentation was made by @iniey and @powerkuy_
 
 ---
 
