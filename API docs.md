@@ -1016,7 +1016,7 @@ Example:
 ```json
 {
     "type": "toggle",
-    "text": "just ey", //optional
+    "text": "just ey",
     "default": true, //optional
     "alias": "alias_ey",
     "expandable": true, //optional
@@ -1036,8 +1036,8 @@ To make toggle button inside sub-module, returns bool value.
 Example:
 ```json
 {
-    "type": "toggle",
-    "text": "just ey", //optional
+    "type": "toggle_button",
+    "text": "just ey",
     "default": true, //optional
     "alias": "alias_ey"
 }
@@ -1070,7 +1070,7 @@ Example:
 ```json
 {
     "type": "slider",
-    "text": "just ey", //optional
+    "text": "just ey",
     "min": 0,
     "max": 100,
     "default": 50, //optional
@@ -1111,7 +1111,7 @@ Example:
 ```json
 {
     "type": "item_picker",
-    "text": "just ey", //optional
+    "text": "just ey",
     "item": "Blank",
     "default": "Blank", //optional
     "alias": "alias_ey"
