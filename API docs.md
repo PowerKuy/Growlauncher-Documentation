@@ -1183,6 +1183,7 @@ Example:
 #
 
 Don't ask me about ImGui :v
+ImGui table list: [ImGui](ImGui.lua)
 
 #
 
