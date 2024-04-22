@@ -1015,7 +1015,7 @@ To make toggle inside sub-module, returns bool value.
 Example:
 ```json
 {
-    "type": "toggle", // or toggle_button
+    "type": "toggle",
     "text": "just ey", //optional
     "default": true, //optional
     "alias": "alias_ey",
