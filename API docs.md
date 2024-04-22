@@ -901,7 +901,7 @@ enum MenuType = {
 ```
 
 
-| `type`          | `icon` | `menu` | `text` | `alias` | `default` | `expandable` | `always_expand` | `background` | `list_child` | `min` | `max` | `use_dot` | `step` | `support_text` | `fill` | return`type,value` |
+| `type`          | `icon` | `menu` | `text` | `alias` | `default` | `expandable` | `always_expand` | `background` | `list_child` | `min` | `max` | `use_dot` | `step` | `support_text` | `fill` | `type,value` |
 | :-              | :-:    | :-:    | :-:    | :-:     | :-:       | :-:          | :-:             | :-:          | :-:          | :-:   | :-:   | :-:       | :-:    | :-:            | :-:    | :-                                  |
 | `labelapp`      | ✔      | ✔     | ❌     | ❌     | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | -                   |
 | `label`         | ❌     | ❌    | ✔      | ❌     | ❌        | ❌          | ❌              | ❌          | ❌           | ❌   | ❌    | ❌       | ❌     | ❌            | ❌     | -                   |
