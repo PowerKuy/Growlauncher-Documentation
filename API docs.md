@@ -1168,7 +1168,7 @@ Example:
     "text": "just ey",
     "alias": "alias_ey",
     "default": "[
-        [\"Ey 1\"]
+        [\"Ey 1\"],
         [\"Ey 2\", \"iniey 2\"]
     ]"
 }
