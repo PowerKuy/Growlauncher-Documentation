@@ -226,7 +226,8 @@ local extra = {
     int lastupdate,
     int alttype,
     int growth,
-    int fruitcount
+    int fruitcount,
+    int progress
 }
 ```
 
@@ -820,7 +821,7 @@ NewDrawList()
 ## warn
 `warn(string text)`
 
-No return. (skip)
+No return.
 
 Example:
 ```lua
