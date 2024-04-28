@@ -2,7 +2,7 @@
 # Growlauncher API
 
 Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
-
+Credit: IniEy ( Growlauncher Staff )
 
 # Script Path
 
