@@ -3,8 +3,9 @@
 
 Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
 
+Credit: IniEy ( Growlauncher Staff )
 
-# Path
+# Script Path
 
 ```storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/```
 
@@ -821,7 +822,7 @@ NewDrawList()
 ## warn
 `warn(string text)`
 
-No return.
+Shows an error warning, no return.
 
 Example:
 ```lua
@@ -1184,7 +1185,7 @@ Example:
 
 Don't ask me about ImGui :v
 
-ImGui table list: [ImGui](ImGui.lua)
+ImGui table list: [ImGui](ImGui_Function_List.lua)
 
 #
 
