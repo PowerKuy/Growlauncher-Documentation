@@ -1184,7 +1184,7 @@ Example:
 
 Don't ask me about ImGui :v
 
-ImGui table list: [ImGui](ImGui.lua)
+ImGui table list: [ImGui](ImGui_Function_List.lua)
 
 #
 
