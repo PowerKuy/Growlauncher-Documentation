@@ -22,7 +22,6 @@ Credit: IniEy ( Growlauncher Staff )
 * [Tile](#tile)
 * [ClientNPC](#clientnpc)
 * [TileExtra](#tileextra)
-* [Data](#data)
 
 * [Vec2i](#vec2i)
 * [Vec2f](#vec2f)
@@ -69,7 +68,7 @@ Credit: IniEy ( Growlauncher Staff )
 * [tile](#tile-1)
 * [ImVec2](#imvec2)
 * [ImVec4](#imvec4)
-* [NewDrawList](#setminimum)
+* [NewDrawList](#newdrawlist)
 * [warn](#warn)
 
 
@@ -260,18 +259,6 @@ local ClientNPC = {
 }
 ```
 
-## Data
-Data struct
-```lua
-local Data = {
-    string title,
-    string message,
-    string confirm,
-    string url,
-    string alias
-}
-```
-
 ## Vec2i
 Vector2 struct
 ```lua
@@ -458,9 +445,9 @@ LogToConsole("I'm in world "..GetWorldName())
 
 
 ## sendDialog
-`sendDialog(Data dialog)`
+`sendDialog(string title, string message, string confirm, string url, string alias)`
 
-Sends [Data dialog](#data) to the server, no return.
+Make a GL dialog, no return.
 
 Example:
 ```lua
@@ -1194,6 +1181,8 @@ ImGui table list: [ImGui](ImGui_Function_List.lua)
 # Credits
 
 This Growlauncher API documentation was made by @iniey and @powerkuy_
+
+Official discord: [Powerkuy Commmunity](https://discord.gg/powerkuyofficial)
 
 ---
 
