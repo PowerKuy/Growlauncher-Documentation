@@ -5,6 +5,9 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 
 Credit: IniEy ( Growlauncher Staff )
 
+Last Update: 02/05/2024
+
+
 # Script Path
 
 ```storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/```
@@ -40,6 +43,14 @@ Credit: IniEy ( Growlauncher Staff )
 * [GetWorldName](#getworldname-or-getcurrentworldname)
 * [growtopia](#growtopia)
 * [sendDialog](#senddialog)
+* [createPlayer](#createplayer)
+
+* [writeToLocal](#writetolocal)
+* [split](#split)
+* [dumpTable](#dumptable)
+* [randomSleep](randomsleep)
+* [randomCSleep](randomcsleep)
+* [await](await)
 
 * [GetLocal](#getlocal-or-getlocal)
 * [GetInventory](#getinventory-or-getinventory)
@@ -210,7 +221,8 @@ local Tile = {
     bool readyharvest,
     TileExtra extra,
     bool colliable,
-    int coltype
+    int coltype,
+    int progress
 }
 ```
 
@@ -227,7 +239,7 @@ local extra = {
     int alttype,
     int growth,
     int fruitcount,
-    int progress
+    int volume
 }
 ```
 
@@ -442,6 +454,8 @@ LogToConsole("I'm in world "..GetWorldName())
 | `tileChange(int posx, int posy, int item_id)` | bool   | Sends packetraw using pos and id.    | `growtopia.tileChange(50, 23, 18)`
 | `warpTo(string nameworld)`                    | -      | Join a certain world.                | `growtopia.warpTo("WORLD")`
 | `enter(int x, int y)` 0 or 2 param            | -      | Enter a door using coordinate.       | `growtopia.enter()`
+| `enterGateway(x, y, buttonNumber)`            | -      | Enter a gateway using coordinate.    | `growtopia.enterGateway(50, 23, 2)`
+| `sendChat(text, toClient)`                    | -      | Sends text packet to the server.     | `growtopia.sendChat("/powerhelp",true)`
 
 
 ## sendDialog
@@ -455,6 +469,20 @@ sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://med
 ```
 
 
+## sendDialog
+`createPlayer(String name, String flag, Int netID, Float posX, Float posY)`
+
+Spawn a visual NPC Avatar, returns NetAvatar.
+
+Set the netID to -1 to do auto netID from the world, make sure the netID doesn't exists to avoid crash.
+
+Example:
+```lua
+@Ubinoob = createPlayer("`@@UbiNoob", "id", -1, getLocal().pos.x, getLocal().pos.y)
+-- Set the netID to -1 to do auto netID from the world
+```
+
+
 ## localPlayer
 `localPlayer()` no param (still on test, maybe changed or removed)
 
@@ -465,6 +493,86 @@ return {pos = {x,y}, punchID, userID, name}
 Example:
 ```lua
 localPlayer().name = "`cIniEy`o"
+```
+
+
+
+## writeToLocal
+`writeToLocal(string file_name, string text_to_write)`
+
+Writes a string inside another file mode.
+
+Example:
+```lua
+writeToLocal("name.txt", "my text here")
+```
+
+
+## split
+`split(string str, string regex)`
+
+Splits string by divider, returns string[].
+
+Example:
+```lua
+local to_split = "Hello|From|Lua"
+local var = to_split:split("|")
+-- Output: var[0] = "Hello", var[1] = "From", var[2] = "Lua"
+```
+
+
+## dumpTable
+`dumpTable(table)`
+
+Dumps table, returns string.
+
+Example:
+```lua
+local table = {
+    name = "Nobody",
+    age = 99,
+    hobbies = {"watching", "breathing"}
+}
+dumpTable(table)
+-- Output: "{["name"] = Nobody,["age"] = 99,["hobbies"] = {[1] = watching, [2] = breathing,},}"
+```
+
+
+## randomSleep
+`randomSleep(int min, int max)`
+Do CSleep for a random time, returns int.
+
+Example:
+```lua
+randomSleep(5, 50)
+```
+
+
+## randomCSleep
+`randomCSleep(int min, int max)`
+Do Sleep for a random time, returns int.
+
+Example:
+```lua
+randomCSleep(5, 50)
+```
+
+
+## await
+`await(function, int timeout)`
+
+Waits function using timeout.
+
+Example:
+```lua
+local wait_me = false
+runThread(function()
+Sleep(4000)
+wait_me = true
+end)
+
+await(function() return wait_me end, 0) -- set timeout 0 to infinity wait, 
+LogToConsole("Hello, welcome :D");
 ```
 
 
