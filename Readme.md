@@ -603,7 +603,7 @@ end
 ## getTile or GetTile
 `getTile(int tilex, int tiley)`
 
-Returns [Tile tile](#tile).
+Returns [Tile](#tile).
 
 Example:
 ```lua
@@ -614,7 +614,7 @@ LogToConsole("Foreground id = "..getTile(0, 0).fg)
 ## getTiles or GetTiles
 `GetTiles()` no param
 
-Returns [Tile tile](#tile).
+Returns [Tile](#tile).
 
 Example:
 ```lua
@@ -640,7 +640,7 @@ end
 ## getNPCList or GetNPCList
 `getNPCList()` no param
 
-Returns [ClientNPC ClientNPC](#clientnpc).
+Returns [ClientNPC](#clientnpc).
 
 Example:
 ```lua
@@ -702,7 +702,7 @@ sendPacketRaw(false, {type = 3, value = 48, x = GetLocal().posX//32, y = GetLoca
 ## sendVariant or SendVariant
 `sendVariant(variantlist)` or `(varlist, packet)` or `(variantlist, use_net_id, net_id, value)` 1 - 4 param
 
-Sends [Variantlist variantlist](#variantlist) to server, no return.
+Sends [Variantlist](#variantlist) to server, no return.
 
 Example:
 ```lua
