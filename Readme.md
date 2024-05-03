@@ -863,7 +863,6 @@ Returns int time.
 Example:
 ```lua
 LogToConsole(getTime())
-return int
 ```
 
 
@@ -871,7 +870,7 @@ return int
 (Prototype)
 | Function                      | return   | Description
 | :-                            | :-       | :-
-| `getTile(int x, int y)`       | userdata | Returns userdata.
+| `getTile(int x, int y)`       | userdata | Returns userdata of a tile.
 | `setFg(userdata, int itemid)` | userdata | Sets visual foreground using item id.
 | `setBg(userdata, int itemid)` | userdata | Sets visual background using item id.
 
@@ -899,7 +898,7 @@ Sets [Vec4](#vec4) as the color value, returns [Vec4](#vec4).
 
 Example:
 ```lua
-ImVec4(0, 0.55f, 0.56f, 1)
+ImVec4(0,0.55f,0.56f,1)
 ```
 
 
