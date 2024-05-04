@@ -828,7 +828,7 @@ end, "onSendPacket")
 ## getValue
 `getValue(int type, string name_value)`
 
-Check the value using type and name.
+Check the value using type and name, returns value.
 
 Example:
 ```lua
