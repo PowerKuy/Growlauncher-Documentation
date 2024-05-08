@@ -5,7 +5,7 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 
 Credit: IniEy ( Growlauncher Staff )
 
-Last Update: 02/05/2024
+Last Update: 08/05/2024
 
 
 # Script Path
@@ -469,7 +469,7 @@ sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://med
 ```
 
 
-## sendDialog
+## createPlayer
 `createPlayer(String name, String flag, Int netID, Float posX, Float posY)`
 
 Spawn a visual NPC Avatar, returns NetAvatar.
