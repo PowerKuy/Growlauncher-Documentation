@@ -220,7 +220,7 @@ local Tile = {
     int flag,
     bool readyharvest,
     TileExtra extra,
-    bool colliable,
+    bool collidable,
     int coltype,
     int progress
 }
