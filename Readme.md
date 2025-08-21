@@ -37,7 +37,7 @@ Last Update: 08/05/2024
 * [Sleep](#sleep)
 * [LogToConsole](#logtoconsole)
 * [sendNotification](#sendnotification)
-* [FindPath](#findpath)
+* [FindPath](#findpath-or-findpath)
 * [EditToggle](#edittoggle-or-edittoggle-or-editvalue)
 * [FindItemID](#finditemid)
 * [GetWorldName](#getworldname-or-getcurrentworldname)
