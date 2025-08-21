@@ -5,13 +5,16 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 
 Credit: IniEy ( Growlauncher Staff )
 
-Last Update: 08/05/2024
+Last Update: 22/08/2025 (might missed some)
 
 
 # Script Path
 
+GL <v6.1.25
 ```storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/```
 
+GL v6.1.25+
+```"Android/data/launcher.powerkuy.growlauncher/files/ScriptLua"```
 
 # Structs
 
@@ -25,6 +28,7 @@ Last Update: 08/05/2024
 * [Tile](#tile)
 * [ClientNPC](#clientnpc)
 * [TileExtra](#tileextra)
+* [ItemInfo](#iteminfo)
 
 * [Vec2i](#vec2i)
 * [Vec2f](#vec2f)
@@ -35,6 +39,7 @@ Last Update: 08/05/2024
 # Functions
 
 * [Sleep](#sleep)
+* [GetGems](#getgems)
 * [LogToConsole](#logtoconsole)
 * [sendNotification](#sendnotification)
 * [FindPath](#findpath-or-findpath)
@@ -85,7 +90,6 @@ Last Update: 08/05/2024
 
 # Deprecated Functions
 
-* [GetGems](#getgems)
 * [SetPathFlag](#setpathflag)
 
 
@@ -131,7 +135,7 @@ local NetAvatar = {
     int sizeY,
     float sizeXenc,
     float sizeYenc,
-    float waterSpeed,
+    float waterSpeed, --(removed)
     float status,
     float irisColor, --[[= vec4, (not added)]]
     float pupilColor, --[[= vec4, (not added)]]
@@ -239,7 +243,14 @@ local extra = {
     int alttype,
     int growth,
     int fruitcount,
-    int volume
+    int volume,
+    vend_price
+    vend_item
+    dshelf1, dshelf2, dshelf3
+    label, label2, label3
+    owner_signed, owner
+    visible
+    color
 }
 ```
 
@@ -268,6 +279,20 @@ local ClientNPC = {
     Vec2i targetpos,
     int id,
     int type
+}
+```
+
+## ItemInfo
+ItemInfo struct
+```lua
+local ItemInfo = {
+    int id,
+    int type,
+    string name,
+    int breakHits,
+    int rarity,
+    int collisionType,
+    int growtime
 }
 ```
 
@@ -371,6 +396,17 @@ Example:
 LogToConsole("First")
 sleep(1000)
 LogToConsole("Second")
+```
+
+
+## GetGems
+`GetGems()` no param (deprecated) 
+
+Returns int gems_amount.
+
+Example:
+```lua
+LogToConsole("My gems is "..GetGems())
 ```
 
 
@@ -732,6 +768,8 @@ sendVariant({v1 = "OnConsoleMessage", v2 = "Console here"})
 ## addHook or AddHook
 `addHook(function func, string event_name, bool no_return)` 2 - 3 param
 
+no_return is currently deprecated.
+
 Hooks a certain event with any or certain return.
 
 Example:
@@ -926,17 +964,6 @@ warn("warn text")
 
 
 # Deprecated Functions
-
-## GetGems
-`GetGems()` no param (deprecated) 
-
-Returns int gems_amount.
-
-Example:
-```lua
-LogToConsole("My gems is "..GetGems())
-```
-
 
 ## SetPathFlag
 `SetPathFlag(int flag)` (deprecated) 
