@@ -98,7 +98,7 @@ GL v6.1.25+
 # Modules
 
 * [addShortcut](#addshortcut)
-* [removeShortcut](#removeshortcut)er)
+* [removeShortcut](#removeshortcut)
 * [addIntoModule](#addintomodule)
 
 * [Sub-Module](#sub-module)
@@ -513,7 +513,7 @@ Make a GL dialog, no return.
 
 Example:
 ```lua
-sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://media.discordapp.net/attachments/1208061157160521779/1228934600529678386/Ey_iniey.png?ex=662dd989&is=661b6489&hm=3bf0116594328b864c92560ec3b163fcaa71517623d09d6efd8713185854e7cd", alias = "Eys"})
+sendDialog({title = "IniEy", message = "Ey", confirm = "Eyo", url = "https://avatars.githubusercontent.com/u/135519269?s=400&u=41d3cf83c1149af7b2a81b5248e61b654c33fa7e&v=4", alias = "Eys"})
 ```
 
 
@@ -990,6 +990,28 @@ SetPathFlag(1)
 
 
 # Modules
+
+
+## addshortcut
+`addshortcut(string name)`
+
+Adds a shortcut using name or alias (better).
+
+Example:
+```lua
+addshortcut("FindPath")
+```
+
+
+## removeshortcut
+`removeshortcut(string name)`
+
+Removes a shortcut using name or alias (better).
+
+Example:
+```lua
+removeshortcut("FindPath")
+```
 
 
 ## addIntoModule
