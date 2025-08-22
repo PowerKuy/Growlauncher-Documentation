@@ -5,16 +5,17 @@ Growlauncher supports [lua programming language](https://www.google.com/search?q
 
 Credit: IniEy ( Growlauncher Staff )
 
-Last Update: 22/08/2025 (might missed some)
+Last Update: 23/08/2025 (might missed some)
 
+Lua version: 5.4
 
 # Script Path
 
 GL <v6.1.25
-```storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/```
+```Android/data/launcher.powerkuy.growlauncher/ScriptLua/```
 
 GL v6.1.25+
-```"Android/data/launcher.powerkuy.growlauncher/files/ScriptLua"```
+```Android/data/launcher.powerkuy.growlauncher/files/ScriptLua```
 
 # Structs
 
@@ -47,6 +48,7 @@ GL v6.1.25+
 * [FindItemID](#finditemid)
 * [GetWorldName](#getworldname-or-getcurrentworldname)
 * [growtopia](#growtopia)
+* [getItemInfoManager](#getiteminfomanager)
 * [sendDialog](#senddialog)
 * [createPlayer](#createplayer)
 
@@ -95,7 +97,10 @@ GL v6.1.25+
 
 # Modules
 
+* [addShortcut](#addshortcut)
+* [removeShortcut](#removeshortcut)er)
 * [addIntoModule](#addintomodule)
+
 * [Sub-Module](#sub-module)
 * [Labelapp](#labelapp)
 * [Label](#label)
@@ -492,6 +497,13 @@ LogToConsole("I'm in world "..GetWorldName())
 | `enter(int x, int y)` 0 or 2 param            | -      | Enter a door using coordinate.       | `growtopia.enter()`
 | `enterGateway(x, y, buttonNumber)`            | -      | Enter a gateway using coordinate.    | `growtopia.enterGateway(50, 23, 2)`
 | `sendChat(text, toClient)`                    | -      | Sends text packet to the server.     | `growtopia.sendChat("/powerhelp",true)`
+
+
+## getItemInfoManager()
+| index function(args)                | return                | description               | Example
+| :-                                  | :-                    | :-                        | :-
+| getItemInfoByID(int item_id)        | [ItemInfo](#iteminfo) | Get item info by its id   | `LogToConsole(getItemInfoManager():getItemInfoByID(2).name)`
+| getItemInfoByName(string name_full) | [ItemInfo](#iteminfo) | Get item info by its name | `LogToConsole(getItemInfoManager():getItemInfoByName("Dirt").id)`
 
 
 ## sendDialog
