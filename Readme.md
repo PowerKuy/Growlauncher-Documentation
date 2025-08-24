@@ -7,7 +7,9 @@ Growlauncher supports [lua programming language](https://lua.org) that allows yo
 
 Credit: IniEy ( Growlauncher Staff )
 
-Last Update: 23/08/2025 (might missed some)
+Last Update: 23/08/2025 
+
+![Status](https://img.shields.io/badge/docs-90%25-green)
 
 Lua version: 5.4
 
@@ -18,7 +20,7 @@ GL <v6.1.25
 
 GL v6.1.25+
 ```Android/data/launcher.powerkuy.growlauncher/files/ScriptLua```
-
+# Table of Contents
 # Structs
 
 * [PacketRaw](#packetraw)
