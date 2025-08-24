@@ -3,7 +3,7 @@
 
 [![Static Badge](https://img.shields.io/badge/Click_Me-blue)](https://github.com/PowerKuy/Growlauncher-Documentation/blob/main/Readme.md)
 
-Growlauncher supports [lua programming language](https://www.google.com/search?q=lua) that allows you to run scripts in Growtopia.
+Growlauncher supports [lua programming language](https://lua.org) that allows you to run scripts in Growtopia.
 
 Credit: IniEy ( Growlauncher Staff )
 
