@@ -21,7 +21,7 @@ GL v6.1.25+
 
 * [PacketRaw](#packetraw)
 * [VariantList](#variantlist)
-* [Tankpacket](#tankpacket-struct)
+* [TankPacket](#tankpacket-struct)
 
 * [NetAvatar](#netavatar)
 * [WorldObject](#worldobject)
@@ -342,49 +342,6 @@ local Vec4 = {
 ```
 
 
-## raw type 
-```
-PACKET_STATE = 0,
-PACKET_CALL_FUNCTION = 1
-PACKET_UPDATE_STATUS = 2
-PACKET_TILE_CHANGE_REQUEST = 3
-PACKET_SEND_MAP_DATA = 4
-PACKET_SEND_TILE_UPDATE_DATA = 5
-PACKET_SEND_TILE_UPDATE_DATA_MULTIPLE = 6
-PACKET_TILE_ACTIVATE_REQUEST = 7
-PACKET_TILE_APPLY_DAMAGE = 8
-PACKET_SEND_INVENTORY_STATE = 9
-PACKET_ITEM_ACTIVATE_REQUEST = 10
-PACKET_ITEM_ACTIVATE_OBJECT_REQUEST = 11
-PACKET_SEND_TILE_TREE_STATE = 12
-PACKET_MODIFY_ITEM_INVENTORY = 13
-PACKET_ITEM_CHANGE_OBJECT = 14
-PACKET_SEND_LOCK = 15
-PACKET_SEND_ITEM_DATABASE_DATA = 16
-PACKET_SEND_PARTICLE_EFFECT = 17
-PACKET_SET_ICON_STATE = 18
-PACKET_ITEM_EFFECT = 19
-PACKET_SET_CHARACTER_STATE = 20
-PACKET_PING_REPLY = 21
-PACKET_PING_REQUEST = 22
-PACKET_GOT_PUNCHED = 23
-PACKET_APP_CHECK_RESPONSE = 24
-PACKET_APP_INTEGRITY_FAIL = 25
-PACKET_DISCONNECT = 26
-PACKET_BATTLE_JOIN = 27
-PACKET_BATTLE_EVEN = 28
-PACKET_USE_DOOR = 29
-PACKET_SEND_PARENTAL = 30
-PACKET_GONE_FISHIN = 31
-PACKET_STEAM = 32
-PACKET_PET_BATTLE = 33
-PACKET_NPC = 34
-PACKET_SPECIAL = 35
-PACKET_SEND_PARTICLE_EFFECT_V2 = 36
-GAME_ACTIVE_ARROW_TO_ITEM = 37
-GAME_SELECT_TILE_INDEX = 38
-```
-
 
 
 # Functions
@@ -405,7 +362,7 @@ LogToConsole("Second")
 
 
 ## GetGems
-`GetGems()` no param (deprecated) 
+`GetGems()` no param
 
 Returns int gems_amount.
 
@@ -1330,6 +1287,50 @@ Example:
 }
 ```
 
+
+
+## Growtopia Raw Packet Type
+| Packet Type                           | Value |
+|---------------------------------------|-------|
+| PACKET_STATE                          | 0     |
+| PACKET_CALL_FUNCTION                  | 1     |
+| PACKET_UPDATE_STATUS                  | 2     |
+| PACKET_TILE_CHANGE_REQUEST            | 3     |
+| PACKET_SEND_MAP_DATA                  | 4     |
+| PACKET_SEND_TILE_UPDATE_DATA          | 5     |
+| PACKET_SEND_TILE_UPDATE_DATA_MULTIPLE | 6     |
+| PACKET_TILE_ACTIVATE_REQUEST          | 7     |
+| PACKET_TILE_APPLY_DAMAGE              | 8     |
+| PACKET_SEND_INVENTORY_STATE           | 9     |
+| PACKET_ITEM_ACTIVATE_REQUEST          | 10    |
+| PACKET_ITEM_ACTIVATE_OBJECT_REQUEST   | 11    |
+| PACKET_SEND_TILE_TREE_STATE           | 12    |
+| PACKET_MODIFY_ITEM_INVENTORY          | 13    |
+| PACKET_ITEM_CHANGE_OBJECT             | 14    |
+| PACKET_SEND_LOCK                      | 15    |
+| PACKET_SEND_ITEM_DATABASE_DATA        | 16    |
+| PACKET_SEND_PARTICLE_EFFECT           | 17    |
+| PACKET_SET_ICON_STATE                 | 18    |
+| PACKET_ITEM_EFFECT                    | 19    |
+| PACKET_SET_CHARACTER_STATE            | 20    |
+| PACKET_PING_REPLY                     | 21    |
+| PACKET_PING_REQUEST                   | 22    |
+| PACKET_GOT_PUNCHED                    | 23    |
+| PACKET_APP_CHECK_RESPONSE             | 24    |
+| PACKET_APP_INTEGRITY_FAIL             | 25    |
+| PACKET_DISCONNECT                     | 26    |
+| PACKET_BATTLE_JOIN                    | 27    |
+| PACKET_BATTLE_EVEN                    | 28    |
+| PACKET_USE_DOOR                       | 29    |
+| PACKET_SEND_PARENTAL                  | 30    |
+| PACKET_GONE_FISHIN                    | 31    |
+| PACKET_STEAM                          | 32    |
+| PACKET_PET_BATTLE                     | 33    |
+| PACKET_NPC                            | 34    |
+| PACKET_SPECIAL                        | 35    |
+| PACKET_SEND_PARTICLE_EFFECT_V2        | 36    |
+| GAME_ACTIVE_ARROW_TO_ITEM             | 37    |
+| GAME_SELECT_TILE_INDEX                | 38    |
 
 
 #
