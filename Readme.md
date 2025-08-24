@@ -1351,7 +1351,7 @@ ImGui table list: [ImGui](ImGui_Function_List.lua)
 
 This Growlauncher API documentation was made by @iniey and @powerkuy_
 
-Official discord: [Powerkuy Commmunity](https://discord.gg/powerkuyofficial) [![Discord](https://img.shields.io/discord/powerkuyofficial)](https://discord.gg/powerkuyofficial)
+Official discord: [Powerkuy Commmunity](https://discord.gg/powerkuyofficial) [![Discord](https://img.shields.io/discord/897496245373906995)](https://discord.gg/powerkuyofficial)
 
 ---
 
