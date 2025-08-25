@@ -9,7 +9,7 @@ Credit: IniEy ( Growlauncher Staff )
 
 Lua version: 5.4
 
-![Status](https://img.shields.io/badge/docs-90%25-green)
+![Status](https://img.shields.io/badge/docs-85%25-green)
 
 Last Update: 23/08/2025 
 
