@@ -9,7 +9,7 @@ Credit: IniEy ( Growlauncher Staff )
 
 Lua version: 5.4
 
-![New Docs Remake](https://img.shields.io/badge/docs-50%25-red)
+New Docs Remake ![New Docs Remake](https://img.shields.io/badge/docs-50%25-red)
 
 Last Update: 23/08/2025 (outdated)
 
