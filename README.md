@@ -391,7 +391,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 ## Item Info
 | Function             | Params             | Return                              | Description                       | Example                             |
 | :-                   | :-                 | :-                                  | :-                                | :-                                  |
-| `findItemID`         | `itemname:string`  | `number`                            | Find item ID by name              | `log(findItemID("Dirt").id)`        |
+| `findItemID`         | `itemname:string`  | `number`                            | Find item ID by name              | `log(findItemID("Dirt"))`           |
 | `getItemInfoByID`    | `id:number`        | [`ItemInfo`](#iteminfo)             | Get item info by ID               | `log(getItemInfoByID(2).name)`      |
 | `getItemInfoByName`  | `name:string`      | [`ItemInfo`](#iteminfo)             | Get item info by name             | `log(getItemInfoByName("Dirt").id)` |
 
