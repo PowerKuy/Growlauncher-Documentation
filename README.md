@@ -1,61 +1,65 @@
+@ -1,635 +0,0 @@
+
 # Growlauncher API Documentation
+
 [![](assets/logo.png)](https://github.com/IniEyyy/Growlauncher-Documentation/blob/main/README.md)
 
 [![Docs Status](https://img.shields.io/badge/Status-Complete-green)]()
 [![Lua Version](https://img.shields.io/badge/Lua-5.4-blue)](https://www.lua.org/)
 
-Growlauncher provides Lua scripting support for Growtopia.  
+Growlauncher provides Lua scripting support for Growtopia.
 This documentation is intended for users who want to create, customize, and extend scripts for personal use.
 
 ---
 
 # 📚 Table of Contents
+
 - [📝 Introduction](#-introduction)
 - [🚀 Getting Started](#-getting-started)
-    - [Script Path](#script-path)
-    - [Module Icon Source](#module-icon-source)
-    - [Growtopia Packet Type](#growtopia-enum-packet-type)
-    - [Growlauncher enum MenuTypes](#growlauncher-enum-menutype)
+  - [Script Path](#script-path)
+  - [Module Icon Source](#module-icon-source)
+  - [Growtopia Packet Type](#growtopia-enum-packet-type)
+  - [Growlauncher enum MenuTypes](#growlauncher-enum-menutype)
 - [🧱 Structs](#-structs)
-    - [WorldTileMap](#worldtilemap)
-    - [Vector2](#vector2)
-    - [Vector3](#vector3)
-    - [Vector4](#vector4)
-    - [Rect](#rect)
-    - [Variant](#variant)
-    - [InventoryItem](#inventoryitem)
-    - [ClientNPC](#clientnpc)
-    - [VariantList](#variantlist)
-    - [WorldObject](#worldobject)
-    - [Dialog](#dialog)
-    - [NetAvatarClothes](#netavatarclothes)
-    - [Tile](#tile)
-    - [ItemInfo](#iteminfo)
-    - [NetAvatar](#netavatar)
-    - [TankPacket](#tankpacket)
-    - [TileExtra](#tileextra)
+  - [WorldTileMap](#worldtilemap)
+  - [Vector2](#vector2)
+  - [Vector3](#vector3)
+  - [Vector4](#vector4)
+  - [Rect](#rect)
+  - [Variant](#variant)
+  - [InventoryItem](#inventoryitem)
+  - [ClientNPC](#clientnpc)
+  - [VariantList](#variantlist)
+  - [WorldObject](#worldobject)
+  - [Dialog](#dialog)
+  - [NetAvatarClothes](#netavatarclothes)
+  - [Tile](#tile)
+  - [ItemInfo](#iteminfo)
+  - [NetAvatar](#netavatar)
+  - [TankPacket](#tankpacket)
+  - [TileExtra](#tileextra)
 - [🚀 Main Functions](#-main-functions)
-    - [Console & Logging](#console--logging)
-    - [Networking & Packets](#networking--packets)
-    - [Player Info](#player-info)
-    - [Item Info](#item-info)
-    - [World & Game State](#world--game-state)
-    - [Math & Utility](#math--utility)
+  - [Console & Logging](#console--logging)
+  - [Networking & Packets](#networking--packets)
+  - [Player Info](#player-info)
+  - [Item Info](#item-info)
+  - [World & Game State](#world--game-state)
+  - [Math & Utility](#math--utility)
 - [🎣 Hooks, Callbacks & Concurrency](#-hooks-callbacks--concurrency)
-    - [Hook Events](#hook-events)
-    - [Hook & Callback Functions](#hook--callbacks-functions)
-    - [Threading & Coroutine](#threading--coroutine)
+  - [Hook Events](#hook-events)
+  - [Hook & Callback Functions](#hook--callbacks-functions)
+  - [Threading & Coroutine](#threading--coroutine)
 - [📑 Namespaces](#-namespaces)
-    - [ItemInfoManager](#iteminfomanager-namespace)
-    - [Tile](#tile-namespace)
-    - [Growtopia](#growtopia-namespace)
-    - [Growlauncher](#growlauncher-namespace)
-    - [Preferences Namespace](#preferences-namespace)
-    - [UserInterface](#userinterface-namespace)
-    - [UIManager](#uimanager-namespace)
+  - [ItemInfoManager](#iteminfomanager-namespace)
+  - [Tile](#tile-namespace)
+  - [Growtopia](#growtopia-namespace)
+  - [Growlauncher](#growlauncher-namespace)
+  - [Preferences](#preferences-namespace)
+  - [UserInterface](#userinterface-namespace)
+  - [UIManager](#uimanager-namespace)
 - [📦 Value & Modules](#-value--modules)
-    - [Value Functions](#value)
-    - [Modules (Notification & UI)](#notification--ui-modules)
+  - [Value Functions](#value)
+  - [Modules (Notification & UI)](#notification--ui-modules)
 - [🛑 Deprecated](#-deprecated)
 - [📜 Sample Script](#-sample-scripts)
 - [🙌 Credits](#-credits)
@@ -64,7 +68,9 @@ This documentation is intended for users who want to create, customize, and exte
 ---
 
 # 📝 Introduction
+
 Growlauncher exposes a Lua API that allows you to:
+
 - Interact with the Growtopia client.
 - Automate actions like sending packets, moving, and reading game state.
 - Create custom modules and user interfaces.
@@ -74,16 +80,20 @@ Growlauncher exposes a Lua API that allows you to:
 # 🚀 Getting Started
 
 Make sure to use real growlauncher, buy it [here](#-community).
+
 ## Script Path
-- **GL < v6.1.25**:  
-    `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/`
-- **GL v6.1.25+**:  
-    `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/files/ScriptLua/`
+
+- **GL < v6.1.25**:
+  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/`
+- **GL v6.1.25+**:
+  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/files/ScriptLua/`
 
 ## Module Icon Source
+
 - `https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Filled`
 
 ## Growtopia enum Packet Type
+
 | Packet Type                           | Value |
 | :-                                    | :-:   |
 | PACKET_STATE                          | 0     |
@@ -127,6 +137,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | GAME_SELECT_TILE_INDEX                | 38    |
 
 ## Growlauncher enum Menutype
+
 | MenuType     | Num |
 | :-           | :-: |
 | Toggle       | 0   |
@@ -139,6 +150,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | Display List | 7   |
 
 ## ImGui docs
+
 - [here](./IMGUI.md)
 
 ---
@@ -166,17 +178,20 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | [**TileExtra**](#tileextra)               | `type`, `label`, `label2`, `label3`, `owner`, `owner_signed`, `vend_price`, `vend_item`, `dshelf1`, `dshelf2`, `dshelf3`, `dshelf4`, `flag`, `admin`, `lastupdate`, `lastupdate2`, `alttype`, `growth`, `volume`, `fruitcount`, `visible`, `color` |
 
 ### WorldTileMap
+
 | Field  | Type                |
 | :-     | :-:                 |
 | `size` | [Vector2](#vector2) |
 
 ### Vector2
+
 | Field | Type   |
 | :-    | :-:    |
 | `x`   | number |
 | `y`   | number |
 
 ### Vector3
+
 | Field | Type   |
 | :-    | :-:    |
 | `x`   | number |
@@ -184,6 +199,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `z`   | number |
 
 ### Vector4
+
 | Field | Type   |
 | :-    | :-:    |
 | `x`   | number |
@@ -192,6 +208,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `w`   | number |
 
 ### Rect
+
 | Field | Type   |
 | :-    | :-:    |
 | `x`   | number |
@@ -200,12 +217,14 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `h`   | number |
 
 ### InventoryItem
+
 | Field    | Type   |
 | :-       | :-:    |
 | `id`     | number |
 | `amount` | number |
 
 ### Variant
+
 | Field | Type    |
 | :-    | :-:     |
 | `x`   | number? |
@@ -213,6 +232,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `z`   | number? |
 
 ### ClientNPC
+
 | Field       | Type                |
 | :-          | :-:                 |
 | `pos`       | [Vector2](#vector2) |
@@ -221,6 +241,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `type`      | number              |
 
 ### VariantList
+
 | Field | Type                                      |
 | :-    | :-:                                       |
 | `v1`  | [Variant](#variant)/string/number/boolean |
@@ -232,6 +253,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `v7`  | [Variant](#variant)/string/number/boolean |
 
 ### WorldObject
+
 | Field    | Type                |
 | :-       | :-:                 |
 | `pos`    | [Vector2](#vector2) |
@@ -241,6 +263,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `id`     | number              |
 
 ### Dialog
+
 | Field     | Type   |
 | :-        | :-:    |
 | `title`   | string |
@@ -251,6 +274,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `url`     | string |
 
 ### NetAvatarClothes
+
 | Field     | Type   |
 | :-        | :-:    |
 | `hair`    | number |
@@ -264,6 +288,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `necklace`| number |
 
 ### Tile
+
 | Field          | Type                     |
 | :-             | :-:                      |
 | `fg`           | number                   |
@@ -276,8 +301,9 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `extra`        | [TileExtra](#tileextra)? |
 | `progress`     | number                   |
 | `readyharvest` | boolean                  |
- 
+
 ### ItemInfo
+
 | Field           | Type   |
 | :-              | :-:    |
 | `id`            | number |
@@ -289,6 +315,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `growTime`      | number |
 
 ### NetAvatar
+
 | Field       | Type                                  |
 | :-          | :-:                                   |
 | `pos`       | [Vector2](#vector2)                   |
@@ -315,6 +342,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `effect`    | [NetAvatarClothes](#netavatarclothes) |
 
 ### TankPacket
+
 | Field      | Type   |
 | :-         | :-:    |
 | `netid`    | number |
@@ -336,6 +364,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `time`     | number |
 
 ### TileExtra
+
 | Field          | Type     |
 | :-             | :-:      |
 | `type`         | number   |
@@ -366,6 +395,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 # 🚀 Main Functions
 
 ## Console & Logging
+
 | Function       | Params                         | Return   | Description            | Example                              |
 | :-             | :-                             | :-:      | :-                     | :-                                   |
 | `log`          | `text:string\|number\|boolean` | -        | Logs text to console   | `log("Hello")`                       |
@@ -373,6 +403,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `dumpTable`    | `o: any`                       | `string` | Dump table into string | `tbl = {1,2,3}; log(dumpTable(tbl))` |
 
 ## Networking & Packets
+
 | Function        | Params                                                                                                | Return | Description                    | Example                                                       |
 | :-              | :-                                                                                                    | :-:    | :-                             | :-                                                            |
 | `gamePacket`    | [`packet:TankPacket`](#tankpacket)                                                                    | -      | Trigger game packet (internal) | `gamePacket(pkt)`                                             | X
@@ -382,6 +413,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `sendPacketRaw` | `flag:boolean`, [`packet:TankPacket`](#tankpacket)                                                    | -      | Send raw TankPacket            | `p=getLocal(); sendPacketRaw(false, {type=3, value=18, x=p.posX, y=p.posY, px=p.posX//32, py = p.posY//32})` |
 
 ## Player Info
+
 | Function             | Params             | Return                              | Description                       | Example                                                   |
 | :-                   | :-:                | :-                                  | :-                                | :-                                                        |
 | `getGems`            | -                  | `number`                            | Get current gem amount            | `log(getGems())`                                          |
@@ -389,6 +421,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `getInventory`       | -                  | [`InventoryItem[]`](#inventoryitem) | Get inventory items               | `for _,item in pairs(getInventory()) do log(item.id) end` |
 
 ## Item Info
+
 | Function             | Params             | Return                              | Description                       | Example                             |
 | :-                   | :-                 | :-                                  | :-                                | :-                                  |
 | `findItemID`         | `itemname:string`  | `number`                            | Find item ID by name              | `log(findItemID("Dirt"))`           |
@@ -396,6 +429,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `getItemInfoByName`  | `name:string`      | [`ItemInfo`](#iteminfo)             | Get item info by name             | `log(getItemInfoByName("Dirt").id)` |
 
 ## World & Game State
+
 | Function                               | Params                                                     | Return                          | Description                | Example                                                   |
 | :-                                     | :-                                                         | :-                              | :-                         | :-                                                        |
 | `getTile`                              | `x:number,y:number`                                        | [`Tile`](#tile)                 | Get tile at coordinates    | `log(getTile(10,5).fg)`                                   |
@@ -410,6 +444,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `GetWorldName` / `getCurrentWorldName` | -                                                          | `string`                        | Get current world name     | `log(GetWorldName())`                                     |
 
 ## Math & Utility
+
 | Function            | Params                                         | Return           | Description                      | Example                                                           |
 | :-                  | :-                                             | :-               | :-                               | :-                                                                |
 | `split`             | `str:string`, `regex:string`                   | `string[]`       | Split string by regex.           | `str = "a,b,c"; for _,a in pairs(str:split(",")) do log(a) end`   |
@@ -423,12 +458,14 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `decryptTextHuh`    | `text:string`                                  | -                | Decrypt alt (internal).          | -                                                                 | X
 | `executeFromAssets` | `path:string`, `name:string`                   | -                | Deprecated execute asset.        | -                                                                 |
 | `error`             | `text:string`                                  | -                | Shows an error warning.          | `error("error text")`                                             |
+| `fetch`             | `url:string`                                  | response, error                | Get text data from url          | `fetch("https://raw.githubusercontent.com/PowerKuy/Growlauncher-Documentation/refs/heads/main/sample-scripts/example-for-fetch.lua")`                                             |
 
 ---
 
 # 📑 Namespaces
 
 ## ItemInfoManager Namespace
+
 | Function                            | Parameters    | Returns          | Description                           |
 | :-                                  | :-            | :-               | :-                                    |
 | `getItemInfoManager`                | -             | `ItemInfoManager`| Get global `ItemInfoManager` instance |
@@ -436,6 +473,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `itemInfoManager.getItemInfoByName` | `name:string` | `table\|nil`     | Get item info object by name          |
 
 ## Tile Namespace
+
 | Function       | Params                           | Return          | Description                | Example                                                                   |
 | :-             | :-                               | :-              | :-                         | :-                                                                        |
 | `tile.getTile` | `x:number`, `y:number`           | [`Tile`](#tile) | Get tile at coordinates    | `tile.getTile(GetLocal().posX//32,GetLocal().posY//32)`                   |
@@ -443,6 +481,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `tile.setBg`   | [`Tile`](#tile), `itemid:number` | -               | Change background visually | `tile.setFg(tile.getTile(GetLocal().posX//32,GetLocal().posY//32), 7188)` |
 
 ## Growtopia Namespace
+
 | Function                        | Params                                       | Return     | Description                         | Example                                                              |
 | :-                              | :-                                           | :-         | :-                                  | :-                                                                   |
 | `growtopia.enter`               | -                                            | -          | Enter main door (spawn)             | `growtopia.enter()`                                                  |
@@ -463,6 +502,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `growtopia.checkInventoryCount` | `itemid:number`                              | `number`   | Count how many items player has     | `growtopia.checkInventoryCount(242)`                                 |
 
 ## Growlauncher Namespace
+
 | index                        | Params | Return           | Description          | Example                                                      |
 | :-                           | :-     | :-               | :-                   | :-                                                           |
 | `growlauncher.version`       | -      | `version:number` | Get version integer. | `log(growlauncher.version)`                                  |
@@ -480,6 +520,7 @@ Make sure to use real growlauncher, buy it [here](#-community).
 | `:set`   | `name:string`, `value:any`   | -             | Set value by key                       |
 
 **Examples:**
+
 ```lua
 local pref = require("preferences")
 pref:new("configFile")
@@ -490,7 +531,9 @@ log(config)
 ```
 
 ## UserInterface Namespace
-JSON builder functions for making custom module.   
+
+JSON builder functions for making custom module.
+
 | Function               | Params                                                                                                                                          | Return                    | Description                           |
 | :-                     | :-                                                                                                                                              | :-                        | :-                                    |
 | `UserInterface.new`    | `sub_name?:string`, `icon?:string`                                                                                                              | `UserInterface`           | Create new UI instance                |
@@ -521,6 +564,7 @@ JSON builder functions for making custom module.
 | `:printJSON`           | -                                                                                                                                               | -                         | Print JSON to console                 |
 
 ## UIManager Namespace
+
 | Function          | Params                           | Return      | Description                       |
 | :-                | :-                               | :-          | :-                                |
 | `UIManager.new`   | -                                | `UIManager` | Creates a new UIManager instance  |
@@ -533,6 +577,7 @@ JSON builder functions for making custom module.
 # 🎣 Hooks, Callbacks & Concurrency
 
 ## Hook Events
+
 - `onVariant(var)` [`var:VariantList`](#variantlist)
 - `onGamePacket(pkt)` [`pkt:TankPacket`](#tankpacket)
 - `onSendPacketRaw(pkt)` [`pkt:TankPacket`](#tankpacket)
@@ -543,6 +588,7 @@ JSON builder functions for making custom module.
 - `onDialog(title,alias,isAccepted)` `title:string`, `alias:string`, `isAccepted:boolean`
 
 ## Hook & Callbacks Functions
+
 | Function             | Params                                           | Return | Description                               | Example                                                  |
 | :-                   | :-                                               | :-     | :-                                        | :-                                                       |
 | `addHook`            | `func:function`, `name:string`, `noret?:boolean` | -      | Add event hook. (noret is deprecated rn.) | `addHook(onDraw,"onDraw")`                               |
@@ -551,12 +597,14 @@ JSON builder functions for making custom module.
 | `AddHookCallback`    | `func:function`, `name:string`                   | -      | Low-level hook callback                   | `AddHookCallback("OnPlayerJoin", "join_logger", function(player) log("Player joined: " .. player.name) end)` |
 | `CallHookCallback`   | `name:string`, `...`                             | -      | Call a registered hook callback           | `CallHookCallback("OnPlayerJoin", { name = "TestBot" })`                                                     |
 | `RemoveHookCallback` | `name:string`                                    | -      | Remove a hook callback                    | `RemoveHookCallback("OnPlayerJoin", "join_logger")`                                                          |
+
 <!-- 
 #Callback
 #Callback.hooks 
 -->
 
 ## Threading & Coroutine
+
 | Function        | Params                                           | Return    | Description                 | Example                                         |
 | :-              | :-                                               | :-        | :-                          | :-                                              |
 | `await`         | `function_cond:fun():boolean`, `timeout?:number` | -         | Await condition             | `await(function() return ready end,1000)`       |
@@ -573,6 +621,7 @@ JSON builder functions for making custom module.
 # 📦 Value & Modules
 
 ## Value
+
 | Function       | Params                                                           | Return                    | Description                      | Example                                     |
 | :-             | :-                                                               | :-                        | :-                               | :-                                          |
 | `getValue`     | `type:number (0=boolean,1=number,2=str)`, `name:string`          | `boolean\|number\|string` | Get value by type and name       | `getValue(0, "ModFly")`                     |
@@ -585,6 +634,7 @@ JSON builder functions for making custom module.
 | `addIntoModule`| `json:string`, `category_name?:string`                           | -                         | Add JSON into module             | `addIntoModule('{"key":1}',"Test")`         |
 
 ## Notification & UI Modules
+
 | Function           | Params                           | Return | Description               | Example                                  |
 | :-                 | :-                               | :-     | :-                        | :-                                       |
 | `sendDialog`       | [`dialog:Dialog`](#dialog)       | -      | Send a GL dialog          | `sendDialog({title="Ey",message="HEY"})` |
@@ -598,6 +648,7 @@ JSON builder functions for making custom module.
 ---
 
 # 🛑 Deprecated
+
 | Function              | Params                                                                     | Return                  | Description                     |
 | :-                    | :-                                                                         | :-                      | :-                              |
 | `allowGameRun`        | -                                                                          | -                       | Deprecated allow run (internal) | X
@@ -608,28 +659,36 @@ JSON builder functions for making custom module.
 ---
 
 # 📜 Sample Scripts
+
 - [UI Sample Script](sample-scripts/sample-ui.lua)
 - [Powerkuy's script](https://discord.com/channels/897496245373906995/1230832789541224489/1230832789541224489)
 
 ---
 
 # 🗒️ Lua Annotation Files
+
+For better experience when creating lua scripts, install `sumneko` extension in vscode
+
 - [ImGui](annotations/imgui.lua)
 - [Growlauncher](annotations/growlauncher.lua)
 
 ---
 
 # 📌 Notes
+
 - Support us by buying the real growlauncher.
 - More free scripts there!
 
 ---
 
 # 🙌 Credits
+
 - **Author:** IniEy
 - **Creator:** Powerkuy
 
 ---
 
 # 🏠 Community
+
 Official discord server: [![Powerkuy Commmunity](https://img.shields.io/discord/897496245373906995)](https://discord.gg/powerkuyofficial)
+

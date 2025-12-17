@@ -438,6 +438,11 @@ function growtopia.dropItem(itemID) end
 ---@param amount number
 function growtopia.confirmDropItem(itemID, amount) end
 
+---@param url string
+---@return string, string
+function fetch(url)
+end
+
 ---@param x number
 ---@param y number
 ---@return any
