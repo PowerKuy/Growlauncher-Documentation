@@ -224,7 +224,9 @@ function allowGameRun() end
 ---@param packet_data TankPacket?
 ---@param netid number?
 ---@param value number?
-function sendVariantList(variantlist, packet_data, netid, value) end
+function sendVariant(variantlist, packet_data, netid, value)
+end
+
 
 ---Find path to coordinates
 ---@param x number
