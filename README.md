@@ -87,6 +87,8 @@ Make sure to use real growlauncher, buy it [here](#-community).
   `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/`
 - **GL v6.1.25+**:
   `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/files/ScriptLua/`
+- **GL v7.0.0+**:
+  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/media/ScriptLua/` <- to support new android system
 
 ## Module Icon Source
 
