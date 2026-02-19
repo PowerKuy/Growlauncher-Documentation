@@ -580,7 +580,7 @@ JSON builder functions for making custom module.
 
 ## Hook Events
 
-- `onVariant(var)` [`var:VariantList`](#variantlist)
+- `onVariant(var, pkt)` [`var:VariantList`](#variantlist)[`pkt:TankPacket`](#tankpacket)
 - `onGamePacket(pkt)` [`pkt:TankPacket`](#tankpacket)
 - `onSendPacketRaw(pkt)` [`pkt:TankPacket`](#tankpacket)
 - `onSendPacket(type,pkt)` `type:number`, `pkt:string`
