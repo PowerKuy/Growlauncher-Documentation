@@ -1,5 +1,3 @@
-@ -1,635 +0,0 @@
-
 # Growlauncher API Documentation
 
 [![](assets/logo.png)](https://github.com/IniEyyy/Growlauncher-Documentation/blob/main/README.md)
@@ -84,12 +82,21 @@ Make sure to use real growlauncher, buy it [here](#-community).
 ## Script Path
 
 - **GL < v6.1.25**:
-  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/`
-- **GL v6.1.25+**:
-  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/files/ScriptLua/`
-- **GL v7.0.0+**:
-  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/media/ScriptLua/` <- to support new android system
 
+  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/ScriptLua/`
+  
+- **GL v6.1.25+**:
+
+  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/files/ScriptLua/`
+  
+- **GL v7.0.0**:
+
+  `storage/emulated/0/Android/data/launcher.powerkuy.growlauncher/media/ScriptLua/` <- to support the new Android system
+  
+- **GL v7.0.1+**:
+
+  `storage/emulated/0/Android/media/launcher.powerkuy.growlauncher/ScriptLua/` <-to support the new Android system and ensure easier file management
+  
 ## Module Icon Source
 
 - `https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Filled`
