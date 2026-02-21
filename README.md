@@ -1,5 +1,3 @@
-@ -1,635 +0,0 @@
-
 # Growlauncher API Documentation
 
 [![](assets/logo.png)](https://github.com/IniEyyy/Growlauncher-Documentation/blob/main/README.md)
